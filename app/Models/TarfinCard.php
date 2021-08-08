@@ -11,6 +11,8 @@ class TarfinCard extends Model
 {
     use HasFactory;
 
+    // region Attributes
+
     protected $fillable = [
         'user_id',
         'number',
@@ -27,10 +29,32 @@ class TarfinCard extends Model
         'disabled_at'     => 'datetime',
     ];
 
+    // endregion
+
+    // region Accessors
+
+    /**
+     * Convert disabled_at in boolean attribute
+     *
+     * @return bool
+     */
+    public function getIsActiveAttribute(): bool
+    {
+        return is_null($this->disabled_at);
+    }
+
+    // endregion
+
+    // region Relations
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
+    // endregion
+
+    // region Scopes
 
     /**
      * Scope active Tarfin Cards
@@ -43,4 +67,6 @@ class TarfinCard extends Model
     {
         return $query->whereNull('disabled_at');
     }
+
+    // endregion
 }
