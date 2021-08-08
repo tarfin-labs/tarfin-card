@@ -31,4 +31,16 @@ class TarfinCardFactory extends Factory
             'disabled_at'     => $this->faker->boolean() ? Carbon::now() : null,
         ];
     }
+
+    /**
+     * Indicate that the Tarfin Card is active.
+     *
+     * @return Factory
+     */
+    public function active(): Factory
+    {
+        return $this->state(fn(): array => [
+            'disabled_at' => null,
+        ]);
+    }
 }
