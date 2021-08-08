@@ -43,4 +43,16 @@ class TarfinCardFactory extends Factory
             'disabled_at' => null,
         ]);
     }
+
+    /**
+     * Indicate that the Tarfin Card is expired.
+     *
+     * @return Factory
+     */
+    public function expired(): Factory
+    {
+        return $this->state(fn () => [
+            'disabled_at' => $this->faker->dateTime(),
+        ]);
+    }
 }
