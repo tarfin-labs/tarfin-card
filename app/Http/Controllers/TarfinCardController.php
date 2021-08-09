@@ -61,4 +61,21 @@ class TarfinCardController extends Controller
     {
         return new TarfinCardResource($tarfinCard);
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\TarfinCardUpdateRequest  $request
+     * @param  \App\Models\TarfinCard                      $tarfinCard
+     *
+     * @return \App\Http\Resources\TarfinCardResource
+     */
+    public function update(TarfinCardUpdateRequest $request, TarfinCard $tarfinCard): TarfinCardResource
+    {
+        $tarfinCard->update([
+            'disabled_at' => $request->input('is_active') ? null : Carbon::now(),
+        ]);
+
+        return new TarfinCardResource($tarfinCard);
+    }
 }
