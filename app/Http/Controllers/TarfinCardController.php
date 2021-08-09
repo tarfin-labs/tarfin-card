@@ -78,4 +78,19 @@ class TarfinCardController extends Controller
 
         return new TarfinCardResource($tarfinCard);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Http\Requests\TarfinCardDeleteRequest  $request
+     * @param  \App\Models\TarfinCard                      $tarfinCard
+     *
+     * @return \App\Http\Resources\TarfinCardResource
+     */
+    public function destroy(TarfinCardDeleteRequest $request, TarfinCard $tarfinCard): TarfinCardResource
+    {
+        $tarfinCard->delete();
+
+        return new TarfinCardResource($tarfinCard);
+    }
 }
