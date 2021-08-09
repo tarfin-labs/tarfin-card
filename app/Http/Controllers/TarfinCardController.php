@@ -30,4 +30,22 @@ class TarfinCardController extends Controller
 
         return TarfinCardResource::collection($tarfinCards);
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\TarfinCardCreateRequest  $request
+     *
+     * @return \App\Http\Resources\TarfinCardResource
+     */
+    public function store(TarfinCardCreateRequest $request): TarfinCardResource
+    {
+        $tarfinCard = $request->user()->tarfinCards()->create([
+            'type'            => $request->input('type'),
+            'number'          => rand(1000000000000000, 9999999999999999),
+            'expiration_date' => Carbon::now()->addYear(),
+        ]);
+
+        return new TarfinCardResource($tarfinCard);
+    }
 }
