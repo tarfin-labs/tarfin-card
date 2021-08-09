@@ -48,4 +48,17 @@ class TarfinCardController extends Controller
 
         return new TarfinCardResource($tarfinCard);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Http\Requests\TarfinCardViewRequest  $request
+     * @param  \App\Models\TarfinCard                    $tarfinCard
+     *
+     * @return \App\Http\Resources\TarfinCardResource
+     */
+    public function show(TarfinCardViewRequest $request, TarfinCard $tarfinCard): TarfinCardResource
+    {
+        return new TarfinCardResource($tarfinCard);
+    }
 }
