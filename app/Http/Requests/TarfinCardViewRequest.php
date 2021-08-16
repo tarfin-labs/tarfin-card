@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\TarfinCard;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TarfinCardViewRequest extends FormRequest
