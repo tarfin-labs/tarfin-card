@@ -137,21 +137,5 @@ class TarfinCardControllerTest extends TestCase
         // endregion
     }
 
-    /** @test */
-    public function a_customer_can_activate_a_tarfin_card(): void
-    {
-        // region 1️⃣ Arrange 🏗
-        // TODO:
-        // endregion
-
-        // region 2️⃣ Act 🏋🏻‍
-        // TODO:
-        // endregion
-
-        // region 3️⃣ Assert ✅
-        // TODO:
-        // endregion
-    }
-
     // THE MORE TESTS THE MORE POINTS :)
 }
