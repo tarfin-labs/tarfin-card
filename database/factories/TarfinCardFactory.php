@@ -45,6 +45,18 @@ class TarfinCardFactory extends Factory
     }
 
     /**
+     * Indicate that the Tarfin Card is deactive.
+     *
+     * @return Factory
+     */
+    public function deactive(): Factory
+    {
+        return $this->state(fn(): array => [
+            'disabled_at' => Carbon::now()->subDays($this->faker->numberBetween(1, 10)),
+        ]);
+    }
+
+    /**
      * Indicate that the Tarfin Card is expired.
      *
      * @return Factory
