@@ -21,6 +21,6 @@ class TarfinCardTransactionController extends Controller
      */
     public function index(TarfinCardTransactionViewAnyRequest $request, TarfinCard $tarfinCard): AnonymousResourceCollection
     {
-        return TarfinCardTransactionResource::collection($tarfinCard->transactions());
+        return TarfinCardTransactionResource::collection($tarfinCard->transactions);
     }
 }
