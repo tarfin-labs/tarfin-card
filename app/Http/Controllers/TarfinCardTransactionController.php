@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TarfinCardTransactionCreateRequest;
 use App\Http\Requests\TarfinCardTransactionViewAnyRequest;
+use App\Http\Requests\TarfinCardTransactionViewRequest;
 use App\Http\Resources\TarfinCardTransactionResource;
 use App\Models\TarfinCard;
+use App\Models\TarfinCardTransaction;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TarfinCardTransactionController extends Controller
@@ -36,5 +38,18 @@ class TarfinCardTransactionController extends Controller
         $newTarfinCardTransaction = $tarfinCard->transactions()->create($request->validated());
 
         return new TarfinCardTransactionResource($newTarfinCardTransaction);
+    }
+
+    /**
+     * Display the specified TarfinCardTransaction.
+     *
+     * @param  \App\Http\Requests\TarfinCardTransactionViewRequest  $request
+     * @param  \App\Models\TarfinCardTransaction                    $tarfinCardTransaction
+     *
+     * @return \App\Http\Resources\TarfinCardTransactionResource
+     */
+    public function show(TarfinCardTransactionViewRequest $request, TarfinCardTransaction $tarfinCardTransaction): TarfinCardTransactionResource
+    {
+        return new TarfinCardTransactionResource($tarfinCardTransaction);
     }
 }
