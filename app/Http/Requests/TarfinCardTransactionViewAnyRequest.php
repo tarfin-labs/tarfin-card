@@ -14,7 +14,7 @@ class TarfinCardTransactionViewAnyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('view-any', TarfinCardTransaction::class);
+        return $this->user()->can('view-any', [TarfinCardTransaction::class, $this->route('tarfin_card')]);
     }
 
     /**

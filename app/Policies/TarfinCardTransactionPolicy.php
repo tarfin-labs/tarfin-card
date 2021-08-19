@@ -14,13 +14,14 @@ class TarfinCardTransactionPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\User        $user
+     * @param  \App\Models\TarfinCard  $tarfinCard
      *
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, TarfinCard $tarfinCard): bool
     {
-        return true;
+        return $user->is($tarfinCard->user);
     }
 
     /**
