@@ -73,30 +73,4 @@ class TarfinCardPolicy
         // TODO: Cannot delete cards with transactions
         return $user->is($tarfinCard->user);
     }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User        $user
-     * @param  \App\Models\TarfinCard  $tarfinCard
-     *
-     * @return bool
-     */
-    public function restore(User $user, TarfinCard $tarfinCard): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User        $user
-     * @param  \App\Models\TarfinCard  $tarfinCard
-     *
-     * @return bool
-     */
-    public function forceDelete(User $user, TarfinCard $tarfinCard): bool
-    {
-        return false;
-    }
 }
