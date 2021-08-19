@@ -70,7 +70,6 @@ class TarfinCardPolicy
      */
     public function delete(User $user, TarfinCard $tarfinCard): bool
     {
-        // TODO: Cannot delete cards with transactions
-        return $user->is($tarfinCard->user);
+        return $user->is($tarfinCard->user) && $tarfinCard->transactions()->doesntExist();
     }
 }
