@@ -17,7 +17,7 @@ class CreateTarfinCardTransactionsTable extends Migration
         Schema::create('tarfin_card_transactions', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(TarfinCard::class);
+            $table->foreignIdFor(TarfinCard::class)->constrained();
             $table->unsignedBigInteger('amount');
             $table->string('currency_code');
 
