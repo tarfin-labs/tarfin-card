@@ -17,7 +17,7 @@ class CreateTarfinCardsTable extends Migration
         Schema::create('tarfin_cards', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->constrained();
             $table->unsignedBigInteger('number');
             $table->string('type');
             $table->dateTime('expiration_date');
