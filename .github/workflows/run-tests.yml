@@ -1,0 +1,23 @@
+name: Tests
+
+on: ['push', 'pull_request']
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-scripts
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Tests
+        run: php artisan test
