@@ -15,22 +15,6 @@ class TarfinCardTransaction extends Model
     use HasFactory;
     use SoftDeletes;
 
-    // region Public Constants
-
-    public const CURRENCY_TRY = 'TRY';
-    public const CURRENCY_EUR = 'EUR';
-    public const CURRENCY_LEU = 'LEU';
-    public const CURRENCY_USD = 'USD';
-
-    public const CURRENCIES = [
-        self::CURRENCY_TRY,
-        self::CURRENCY_EUR,
-        self::CURRENCY_LEU,
-        self::CURRENCY_USD,
-    ];
-
-    // endregion
-
     // region Attributes
 
     protected $fillable = [

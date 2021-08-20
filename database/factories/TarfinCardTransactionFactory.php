@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Constants\Currency;
 use App\Models\TarfinCard;
 use App\Models\TarfinCardTransaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,7 +26,7 @@ class TarfinCardTransactionFactory extends Factory
         return [
             'tarfin_card_id' => TarfinCard::factory(),
             'amount'         => $this->faker->numberBetween(100, 999) * 10,
-            'currency_code'  => $this->faker->randomElement(TarfinCardTransaction::CURRENCIES),
+            'currency_code'  => $this->faker->randomElement(Currency::ALL),
         ];
     }
 }
