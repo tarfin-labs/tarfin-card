@@ -1,6 +1,6 @@
 name: Tests
 
-on: ['push', 'pull_request']
+on: [ 'push', 'pull_request' ]
 
 jobs:
   tests:
@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - name: Install Composer dependencies
