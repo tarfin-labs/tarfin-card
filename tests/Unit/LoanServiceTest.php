@@ -284,13 +284,18 @@ class LoanServiceTest extends TestCase
         $this->loanService->repayLoan($loan, 5001, Currency::TRY, Carbon::now());
     }
 
+    /**
+     * DataProvider for test `can_create_loan_for_a_customer`
+     *
+     * @return array[]
+     */
     public function createLoanDataProvider(): array
     {
         return [
-            'Case #1' => [3, 5000, Currency::TRY, Carbon::now()->startOfMonth(), [1666, 1666, 1668]],
-            'Case #2' => [6, 5000, Currency::LEU, Carbon::now()->startOfMonth(), [833, 833, 833, 833, 833, 835]],
-            'Case #3' => [6, 12345, Currency::EUR, Carbon::now()->startOfMonth(), [2057, 2057, 2057, 2057, 2057, 2060]],
-            'Case #4' => [3, 4, Currency::LEU, Carbon::now()->startOfMonth(), [1, 1, 2]],
+            '5000TRY for 3 months' => [3, 5000, Currency::TRY, Carbon::now()->startOfMonth(), [1666, 1666, 1668]],
+            '5000LEU for 6 months' => [6, 5000, Currency::LEU, Carbon::now()->startOfMonth(), [833, 833, 833, 833, 833, 835]],
+            '12345EUR for 6 months' => [6, 12345, Currency::EUR, Carbon::now()->startOfMonth(), [2057, 2057, 2057, 2057, 2057, 2060]],
+            '4EUR for 3 months' => [3, 4, Currency::EUR, Carbon::now()->startOfMonth(), [1, 1, 2]],
         ];
     }
 }
