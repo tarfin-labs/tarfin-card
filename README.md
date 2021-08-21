@@ -14,30 +14,13 @@
 
 This challenge's main purpose is to determine your coding style and choices.
 
-The Tarfin Card Challenge does not include any unique or cutting-edge technology, tools, or other elements, which is precisely the point: we want to focus on your coding style rather than get sidetracked.
+The `Tarfin Card Challenge` does not include any unique or cutting-edge technology, tools, or other elements, which is precisely the point: we want to focus on your coding style rather than get sidetracked.
 
 On that note, there are no "rights and wrongs" in this challenge, and there are no "trick portions." We simply want to get a better understanding of how you develop code.
 
 This also allows us to have a more meaningful and positive technical interview discussion. We don't like white-boarding in interviews, so having some concrete code to discuss would be preferable. That, we believe, makes the interview lot more entertaining and fruitful.
 
 Got problems? Help us improve this code challenge by writing to us. We’re happy to help 🙂
-
-### Setup procedure
-
-1. Fork the repository in your personal GitHub account
-2. Checkout a new feature branch from `main`
-3. Copy the example .env file:    
-   `cp .env.example .env`
-4. Install composer dependencies  
-   `composer install`
-5. Create sqlite database file  
-    `touch database/database.sqlite`
-6. Generate appliation key
-   `php artisan key:generate`
-7. Make your changes in each [commit atomic](https://en.wikipedia.org/wiki/Atomic_commit)
-8. Check if the tests are green ✅  
-    `php artisan test`
-10. Push the code and prepare the Pull Request from feature branch to `main` branch
 
 ### Test #01
 
@@ -76,7 +59,7 @@ Create a `LoanService` to handle repayments based on complete unit tests that ha
 
 #### Business Logic
 
-Each customer can have a credit `Loan` (due in 3 or 6 months). So a Loan has 3 or 6 *ScheduledRepayment*s (once each
+Each customer can have a credit `Loan` (due in 3 or 6 months). So a `Loan` has 3 or 6 `ScheduledRepayment`s (once each
 month), and it can be repaid with `ReceivedRepayment`s. Example:
 
 `Loan` of 3 months with amount 3000$, created on 2021-01-01
@@ -85,7 +68,7 @@ month), and it can be repaid with `ReceivedRepayment`s. Example:
 - Scheduled Repayment of 1000$ due to 2021-03-01
 - Scheduled Repayment of 1000$ due to 2021-04-01
 
-A customer can repay the full amount of each single scheduled repayment, but also can repay partially or in full
+A customer can repay the full amount of each single `ScheduledRepayment`, but also can repay partially or in full.
 
 #### Challenge
 
@@ -97,3 +80,22 @@ Read through the tests of `LoanService` to understand what is the logic to be im
 - Separate classes for constants
 
 **IMPORTANT:** For this challenge you `SHOULD NOT` update the unit test.
+
+---
+
+### Setup procedure
+
+1. Fork the repository in your personal GitHub account
+2. Checkout a new feature branch from `main`
+3. Copy the example .env file    
+   `cp .env.example .env`
+4. Install composer dependencies  
+   `composer install`
+5. Create sqlite database file  
+   `touch database/database.sqlite`
+6. Generate appliation key
+   `php artisan key:generate`
+7. Make your changes in each [commit atomic](https://en.wikipedia.org/wiki/Atomic_commit)
+8. Check if the tests are green ✅  
+   `php artisan test`
+10. Push the code and prepare the Pull Request from feature branch to `main` branch
