@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Constants\Currency;
 use App\Constants\PaymentStatus;
+use App\Exceptions\AlreadyRepaidException;
 use App\Exceptions\AmountHigherThanOutstandingAmountException;
 use App\Models\Loan;
 use App\Models\ReceivedRepayment;
@@ -284,6 +285,19 @@ class LoanServiceTest extends TestCase
 
         // 3️⃣ Assert ✅
         $this->expectException(AmountHigherThanOutstandingAmountException::class);
+
+        // 2️⃣ Act 🏋🏻‍
+        $this->loanService->repayLoan($loan, 5001, Currency::TRY, Carbon::now());
+    }
+
+    /** @test */
+    public function can_not_pay_a_loan_if_already_repaid(): void
+    {
+        // 1️⃣ Arrange 🏗
+        $loan = Loan::factory()->create(['status' => PaymentStatus::REPAID]);
+
+        // 3️⃣ Assert ✅
+        $this->expectException(AlreadyRepaidException::class);
 
         // 2️⃣ Act 🏋🏻‍
         $this->loanService->repayLoan($loan, 5001, Currency::TRY, Carbon::now());
