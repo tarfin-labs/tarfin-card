@@ -14,13 +14,13 @@
 
 This challenge's main purpose is to determine your coding style and choices.
 
-The Card Challenge does not include any unique or cutting-edge technology, tools, or other elements, which is precisely the point: we want to focus on your coding style rather than get sidetracked.
+The Tarfin Card Challenge does not include any unique or cutting-edge technology, tools, or other elements, which is precisely the point: we want to focus on your coding style rather than get sidetracked.
 
 On that note, there are no "rights and wrongs" in this challenge, and there are no "trick portions." We simply want to get a better understanding of how you develop code.
 
 This also allows us to have a more meaningful and positive technical interview discussion. We don't like white-boarding in interviews, so having some concrete code to discuss would be preferable. That, we believe, makes the interview lot more entertaining and fruitful.
 
-Got problems? Help us improve this code challenge by writing to us. We’re happy to help 🙂.
+Got problems? Help us improve this code challenge by writing to us. We’re happy to help 🙂
 
 ### Setup procedure
 
