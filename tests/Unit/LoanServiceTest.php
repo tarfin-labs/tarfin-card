@@ -207,4 +207,65 @@ class LoanServiceTest extends TestCase
             'received_at'   => Carbon::parse('2022-04-20'),
         ]);
     }
+
+    /** @test */
+    public function can_pay_multiple_scheduled_payment(): void
+    {
+        // 1️⃣ Arrange 🏗
+        $loan = $this->loanService->createLoan(
+            $this->customer,
+            5000,
+            Currency::TRY,
+            3,
+            Carbon::parse('2022-01-20'),
+        );
+
+        // Paying more than the first scheduled repayment amount
+        $receivedRepayment = 2000;
+        $currencyCode = Currency::TRY;
+        $receivedAt = Carbon::parse('2022-02-20');
+
+        // 2️⃣ Act 🏋🏻‍
+        $loan = $this->loanService->repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
+
+        // 3️⃣ Assert ✅
+        // Asserting Loan values
+        $this->assertDatabaseHas(Loan::class, [
+            'id'                 => $loan->id,
+            'user_id'            => $this->customer->id,
+            'amount'             => 5000,
+            'outstanding_amount' => 5000 - 2000,
+            'currency_code'      => $currencyCode,
+            'status'             => PaymentStatus::DUE,
+            'processed_at'       => Carbon::parse('2022-01-20'),
+        ]);
+
+        // Asserting First Scheduled Repayment is Repaid
+        $this->assertDatabaseHas(ScheduledRepayment::class, [
+            'loan_id'            => $loan->id,
+            'amount'             => 1666,
+            'outstanding_amount' => 0,
+            'currency_code'      => $currencyCode,
+            'due_date'           => Carbon::parse('2022-02-20'),
+            'status'             => PaymentStatus::REPAID,
+        ]);
+
+        // Asserting Second Scheduled Repayment is Partial
+        $this->assertDatabaseHas(ScheduledRepayment::class, [
+            'loan_id'            => $loan->id,
+            'amount'             => 1666,
+            'outstanding_amount' => 1332, // 1666 - (2000 - 1666)
+            'currency_code'      => $currencyCode,
+            'due_date'           => Carbon::parse('2022-03-20'),
+            'status'             => PaymentStatus::PARTIAL,
+        ]);
+
+        // Asserting Received Repayment
+        $this->assertDatabaseHas(ReceivedRepayment::class, [
+            'loan_id'       => $loan->id,
+            'amount'        => 2000,
+            'currency_code' => $currencyCode,
+            'received_at'   => Carbon::parse('2022-02-20'),
+        ]);
+    }
 }
