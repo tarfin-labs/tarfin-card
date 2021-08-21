@@ -32,15 +32,12 @@ class LoanServiceTest extends TestCase
         $this->loanService = new LoanService();
     }
 
-    /** @test */
-    public function can_create_loan_for_a_customer(): void
+    /**
+     * @test
+     * @dataProvider createLoanDataProvider
+     */
+    public function can_create_loan_for_a_customer($terms, $amount, $currencyCode, $processedAt, $scheduledRepaymentAmounts): void
     {
-        // 1️⃣ Arrange 🏗
-        $terms = 3;
-        $amount = 5000;
-        $currencyCode = $this->faker->randomElement(Currency::ALL);
-        $processedAt = Carbon::now()->startOfMonth();
-
         // 2️⃣ Act 🏋🏻‍
         $loan = $this->loanService->createLoan($this->customer, $amount, $currencyCode, $terms, $processedAt);
 
@@ -58,32 +55,16 @@ class LoanServiceTest extends TestCase
 
         $this->assertCount($terms, $loan->scheduledRepayments);
 
-        $this->assertDatabaseHas(ScheduledRepayment::class, [
-            'loan_id'            => $loan->id,
-            'amount'             => 1666,
-            'outstanding_amount' => 1666,
-            'currency_code'      => $currencyCode,
-            'due_date'           => $processedAt->clone()->addMonth(),
-            'status'             => PaymentStatus::DUE,
-        ]);
-
-        $this->assertDatabaseHas(ScheduledRepayment::class, [
-            'loan_id'            => $loan->id,
-            'amount'             => 1666,
-            'outstanding_amount' => 1666,
-            'currency_code'      => $currencyCode,
-            'due_date'           => $processedAt->clone()->addMonths(2),
-            'status'             => PaymentStatus::DUE,
-        ]);
-
-        $this->assertDatabaseHas(ScheduledRepayment::class, [
-            'loan_id'            => $loan->id,
-            'amount'             => 1668,
-            'outstanding_amount' => 1668,
-            'currency_code'      => $currencyCode,
-            'due_date'           => $processedAt->clone()->addMonths(3),
-            'status'             => PaymentStatus::DUE,
-        ]);
+        foreach ($loan->scheduledRepayments as $index => $scheduledRepayment) {
+            $this->assertDatabaseHas(ScheduledRepayment::class, [
+                'loan_id'            => $loan->id,
+                'amount'             => $scheduledRepaymentAmounts[$index],
+                'outstanding_amount' => $scheduledRepaymentAmounts[$index],
+                'currency_code'      => $currencyCode,
+                'due_date'           => $processedAt->clone()->addMonth($index + 1),
+                'status'             => PaymentStatus::DUE,
+            ]);
+        }
 
         $this->assertEquals($amount, $loan->scheduledRepayments()->sum('amount'));
     }
@@ -301,5 +282,15 @@ class LoanServiceTest extends TestCase
 
         // 2️⃣ Act 🏋🏻‍
         $this->loanService->repayLoan($loan, 5001, Currency::TRY, Carbon::now());
+    }
+
+    public function createLoanDataProvider(): array
+    {
+        return [
+            'Case #1' => [3, 5000, Currency::TRY, Carbon::now()->startOfMonth(), [1666, 1666, 1668]],
+            'Case #2' => [6, 5000, Currency::LEU, Carbon::now()->startOfMonth(), [833, 833, 833, 833, 833, 835]],
+            'Case #3' => [6, 12345, Currency::EUR, Carbon::now()->startOfMonth(), [2057, 2057, 2057, 2057, 2057, 2060]],
+            'Case #4' => [3, 4, Currency::LEU, Carbon::now()->startOfMonth(), [1, 1, 2]],
+        ];
     }
 }
