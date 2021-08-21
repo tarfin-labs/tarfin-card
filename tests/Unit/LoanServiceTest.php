@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Constants\Currency;
 use App\Constants\PaymentStatus;
+use App\Exceptions\AmountHigherThanOutstandingAmountException;
 use App\Models\Loan;
 use App\Models\ReceivedRepayment;
 use App\Models\ScheduledRepayment;
@@ -267,5 +268,24 @@ class LoanServiceTest extends TestCase
             'currency_code' => $currencyCode,
             'received_at'   => Carbon::parse('2022-02-20'),
         ]);
+    }
+
+    /** @test */
+    public function can_not_pay_more_than_outstanding_amount(): void
+    {
+        // 1️⃣ Arrange 🏗
+        $loan = $this->loanService->createLoan(
+            $this->customer,
+            5000,
+            Currency::TRY,
+            3,
+            Carbon::parse('2022-01-20'),
+        );
+
+        // 3️⃣ Assert ✅
+        $this->expectException(AmountHigherThanOutstandingAmountException::class);
+
+        // 2️⃣ Act 🏋🏻‍
+        $this->loanService->repayLoan($loan, 5001, Currency::TRY, Carbon::now());
     }
 }
