@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Constants\Currency;
+use App\Constants\CurrencyType;
 use App\Models\TarfinCardTransaction;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -28,7 +28,7 @@ class TarfinCardTransactionCreateRequest extends FormRequest
     {
         return [
             'amount'        => ['required', 'integer'],
-            'currency_code' => ['required', 'string', Rule::in(Currency::ALL)],
+            'currency_code' => ['required', 'string', Rule::in(CurrencyType::ALL)],
         ];
     }
 }

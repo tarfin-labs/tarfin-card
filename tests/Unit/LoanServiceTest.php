@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Constants\Currency;
+use App\Constants\CurrencyType;
 use App\Constants\PaymentStatus;
 use App\Exceptions\AlreadyRepaidException;
 use App\Exceptions\AmountHigherThanOutstandingAmountException;
@@ -76,13 +76,13 @@ class LoanServiceTest extends TestCase
         $loan = $this->loanService->createLoan(
             $this->customer,
             5000,
-            Currency::TRY,
+            CurrencyType::TRY,
             3,
             Carbon::parse('2022-01-20'),
         );
 
         $receivedRepayment = 1666;
-        $currencyCode = Currency::TRY;
+        $currencyCode = CurrencyType::TRY;
         $receivedAt = Carbon::parse('2022-02-20');
 
         // 2️⃣ Act 🏋🏻‍
@@ -137,7 +137,7 @@ class LoanServiceTest extends TestCase
         $loan = $this->loanService->createLoan(
             $this->customer,
             5000,
-            Currency::TRY,
+            CurrencyType::TRY,
             3,
             Carbon::parse('2022-01-20'),
         );
@@ -153,7 +153,7 @@ class LoanServiceTest extends TestCase
         }
 
         $receivedRepayment = 1668;
-        $currencyCode = Currency::TRY;
+        $currencyCode = CurrencyType::TRY;
         $receivedAt = Carbon::parse('2022-04-20');
 
         // 2️⃣ Act 🏋🏻‍
@@ -198,14 +198,14 @@ class LoanServiceTest extends TestCase
         $loan = $this->loanService->createLoan(
             $this->customer,
             5000,
-            Currency::TRY,
+            CurrencyType::TRY,
             3,
             Carbon::parse('2022-01-20'),
         );
 
         // Paying more than the first scheduled repayment amount
         $receivedRepayment = 2000;
-        $currencyCode = Currency::TRY;
+        $currencyCode = CurrencyType::TRY;
         $receivedAt = Carbon::parse('2022-02-20');
 
         // 2️⃣ Act 🏋🏻‍
@@ -259,7 +259,7 @@ class LoanServiceTest extends TestCase
         $loan = $this->loanService->createLoan(
             $this->customer,
             5000,
-            Currency::TRY,
+            CurrencyType::TRY,
             3,
             Carbon::parse('2022-01-20'),
         );
@@ -268,7 +268,7 @@ class LoanServiceTest extends TestCase
         $this->expectException(AmountHigherThanOutstandingAmountException::class);
 
         // 2️⃣ Act 🏋🏻‍
-        $this->loanService->repayLoan($loan, 5001, Currency::TRY, Carbon::now());
+        $this->loanService->repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
     }
 
     /** @test */
@@ -281,7 +281,7 @@ class LoanServiceTest extends TestCase
         $this->expectException(AlreadyRepaidException::class);
 
         // 2️⃣ Act 🏋🏻‍
-        $this->loanService->repayLoan($loan, 5001, Currency::TRY, Carbon::now());
+        $this->loanService->repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
     }
 
     /**
@@ -292,10 +292,10 @@ class LoanServiceTest extends TestCase
     public function createLoanDataProvider(): array
     {
         return [
-            '5000TRY for 3 months' => [3, 5000, Currency::TRY, Carbon::now()->startOfMonth(), [1666, 1666, 1668]],
-            '5000LEU for 6 months' => [6, 5000, Currency::LEU, Carbon::now()->startOfMonth(), [833, 833, 833, 833, 833, 835]],
-            '12345EUR for 6 months' => [6, 12345, Currency::EUR, Carbon::now()->startOfMonth(), [2057, 2057, 2057, 2057, 2057, 2060]],
-            '4EUR for 3 months' => [3, 4, Currency::EUR, Carbon::now()->startOfMonth(), [1, 1, 2]],
+            '5000TRY for 3 months' => [3, 5000, CurrencyType::TRY, Carbon::now()->startOfMonth(), [1666, 1666, 1668]],
+            '5000LEU for 6 months' => [6, 5000, CurrencyType::LEU, Carbon::now()->startOfMonth(), [833, 833, 833, 833, 833, 835]],
+            '12345EUR for 6 months' => [6, 12345, CurrencyType::EUR, Carbon::now()->startOfMonth(), [2057, 2057, 2057, 2057, 2057, 2060]],
+            '4EUR for 3 months' => [3, 4, CurrencyType::EUR, Carbon::now()->startOfMonth(), [1, 1, 2]],
         ];
     }
 }

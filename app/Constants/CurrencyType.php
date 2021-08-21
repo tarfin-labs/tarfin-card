@@ -2,7 +2,7 @@
 
 namespace App\Constants;
 
-class Currency
+class CurrencyType
 {
     public const TRY = 'TRY';
     public const EUR = 'EUR';
