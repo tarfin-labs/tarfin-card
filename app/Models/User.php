@@ -55,7 +55,7 @@ class User extends Authenticatable
     // region Relations
 
     /**
-     * An User has many Tarfin Cards
+     * An User has many Tarfin Cards.
      *
      * @return HasMany
      */

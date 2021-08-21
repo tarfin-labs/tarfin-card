@@ -40,7 +40,7 @@ class TarfinCard extends Model
     // region Accessors
 
     /**
-     * Convert disabled_at in boolean attribute
+     * Convert disabled_at in boolean attribute.
      *
      * @return bool
      */
@@ -68,7 +68,7 @@ class TarfinCard extends Model
     // region Scopes
 
     /**
-     * Scope active Tarfin Cards
+     * Scope active Tarfin Cards.
      *
      * @param  Builder  $query
      *
