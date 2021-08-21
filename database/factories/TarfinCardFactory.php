@@ -41,7 +41,7 @@ class TarfinCardFactory extends Factory
      */
     public function forCustomer(User $customer): Factory
     {
-        return $this->state(fn(): array => [
+        return $this->state(fn (): array => [
             'user_id' => $customer->id,
         ]);
     }
@@ -53,7 +53,7 @@ class TarfinCardFactory extends Factory
      */
     public function active(): Factory
     {
-        return $this->state(fn(): array => [
+        return $this->state(fn (): array => [
             'disabled_at' => null,
         ]);
     }
@@ -65,7 +65,7 @@ class TarfinCardFactory extends Factory
      */
     public function deactive(): Factory
     {
-        return $this->state(fn(): array => [
+        return $this->state(fn (): array => [
             'disabled_at' => Carbon::now()->subDays($this->faker->numberBetween(1, 10)),
         ]);
     }

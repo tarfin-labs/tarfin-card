@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
 class TarfinCardController extends Controller
 {
     /**
-     * List all active Tarfin Cards
+     * List all active Tarfin Cards.
      *
      * @param  \App\Http\Requests\TarfinCardViewAnyRequest  $request
      *

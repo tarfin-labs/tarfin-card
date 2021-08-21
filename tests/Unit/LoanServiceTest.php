@@ -147,7 +147,7 @@ class LoanServiceTest extends TestCase
 
         foreach ($loan->scheduledRepayments->take(2) as $scheduledRepayment) {
             $scheduledRepayment->update([
-                'status' => PaymentStatus::REPAID,
+                'status'             => PaymentStatus::REPAID,
                 'outstanding_amount' => 0,
             ]);
         }
