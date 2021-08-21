@@ -6,6 +6,7 @@ use App\Http\Requests\TarfinCardTransactionCreateRequest;
 use App\Http\Requests\TarfinCardTransactionViewAnyRequest;
 use App\Http\Requests\TarfinCardTransactionViewRequest;
 use App\Http\Resources\TarfinCardTransactionResource;
+use App\Jobs\ProcessTarfinCardTransactionJob;
 use App\Models\TarfinCard;
 use App\Models\TarfinCardTransaction;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -36,6 +37,8 @@ class TarfinCardTransactionController extends Controller
     public function store(TarfinCardTransactionCreateRequest $request, TarfinCard $tarfinCard): TarfinCardTransactionResource
     {
         $newTarfinCardTransaction = $tarfinCard->transactions()->create($request->validated());
+
+        ProcessTarfinCardTransactionJob::dispatchAfterResponse($newTarfinCardTransaction);
 
         return new TarfinCardTransactionResource($newTarfinCardTransaction);
     }
