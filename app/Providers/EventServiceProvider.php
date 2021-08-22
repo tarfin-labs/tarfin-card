@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\TarfinCard;
+use App\Observers\TarfinCardObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,8 +27,8 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        //
+        TarfinCard::observe(TarfinCardObserver::class);
     }
 }
