@@ -38,7 +38,7 @@ class TarfinCardTransactionController extends Controller
     {
         $newTarfinCardTransaction = $tarfinCard->transactions()->create($request->validated());
 
-        ProcessTarfinCardTransactionJob::dispatchAfterResponse($newTarfinCardTransaction);
+        ProcessTarfinCardTransactionJob::dispatchAfterResponse($newTarfinCardTransaction->id);
 
         return new TarfinCardTransactionResource($newTarfinCardTransaction);
     }

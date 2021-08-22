@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\TarfinCardTransaction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,16 +16,16 @@ class ProcessTarfinCardTransactionJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    protected TarfinCardTransaction $tarfinCardTransaction;
+    protected int $tarfinCardTransactionId;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(TarfinCardTransaction $tarfinCardTransaction)
+    public function __construct(int $tarfinCardTransaction)
     {
-        $this->tarfinCardTransaction = $tarfinCardTransaction;
+        $this->tarfinCardTransactionId = $tarfinCardTransaction;
     }
 
     /**
@@ -36,6 +35,8 @@ class ProcessTarfinCardTransactionJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Http::post('http://you-should-mock-this-job', $this->tarfinCardTransaction->id);
+        Http::post('http://you-should-mock-this-job', [
+            'tarfin_card_transaction_id' => $this->tarfinCardTransactionId,
+        ]);
     }
 }
