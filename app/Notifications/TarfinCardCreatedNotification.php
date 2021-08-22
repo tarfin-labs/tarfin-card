@@ -46,7 +46,7 @@ class TarfinCardCreatedNotification extends Notification
     {
         return Http::post('http://you-should-mock-this-mail-service', [
             'tarfin_card_id' => $this->tarfinCard->id,
-            'message' => "Your Tarfin Card #{$this->tarfinCard->number} Created",
+            'message'        => "Your Tarfin Card #{$this->tarfinCard->number} Created",
         ]);
     }
 }
