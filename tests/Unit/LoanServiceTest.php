@@ -6,11 +6,11 @@ use App\Constants\CurrencyType;
 use App\Constants\PaymentStatus;
 use App\Exceptions\AlreadyRepaidException;
 use App\Exceptions\AmountHigherThanOutstandingAmountException;
+use App\Facades\LoanFacade;
 use App\Models\Loan;
 use App\Models\ReceivedRepayment;
 use App\Models\ScheduledRepayment;
 use App\Models\User;
-use App\Services\LoanService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
@@ -22,14 +22,12 @@ class LoanServiceTest extends TestCase
     use WithFaker;
 
     protected User $customer;
-    protected LoanService $loanService;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->customer = User::factory()->create();
-        $this->loanService = new LoanService();
     }
 
     /**
@@ -39,7 +37,7 @@ class LoanServiceTest extends TestCase
     public function can_create_loan_for_a_customer($terms, $amount, $currencyCode, $processedAt, $scheduledRepaymentAmounts): void
     {
         // 2️⃣ Act 🏋🏻‍
-        $loan = $this->loanService->createLoan($this->customer, $amount, $currencyCode, $terms, $processedAt);
+        $loan = LoanFacade::createLoan($this->customer, $amount, $currencyCode, $terms, $processedAt);
 
         // 3️⃣ Assert ✅
         $this->assertDatabaseHas(Loan::class, [
@@ -73,7 +71,7 @@ class LoanServiceTest extends TestCase
     public function can_pay_a_scheduled_payment(): void
     {
         // 1️⃣ Arrange 🏗
-        $loan = $this->loanService->createLoan(
+        $loan = LoanFacade::createLoan(
             $this->customer,
             5000,
             CurrencyType::TRY,
@@ -86,7 +84,7 @@ class LoanServiceTest extends TestCase
         $receivedAt = Carbon::parse('2022-02-20');
 
         // 2️⃣ Act 🏋🏻‍
-        $loan = $this->loanService->repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
+        $loan = LoanFacade::repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
 
         // 3️⃣ Assert ✅
         // Assert loan values
@@ -134,7 +132,7 @@ class LoanServiceTest extends TestCase
     public function can_pay_a_scheduled_payment_consecutively(): void
     {
         // 1️⃣ Arrange 🏗
-        $loan = $this->loanService->createLoan(
+        $loan = LoanFacade::createLoan(
             $this->customer,
             5000,
             CurrencyType::TRY,
@@ -158,7 +156,7 @@ class LoanServiceTest extends TestCase
 
         // 2️⃣ Act 🏋🏻‍
         // Repaying the last one
-        $loan = $this->loanService->repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
+        $loan = LoanFacade::repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
 
         // 3️⃣ Assert ✅
         // Asserting Loan values
@@ -195,7 +193,7 @@ class LoanServiceTest extends TestCase
     public function can_pay_multiple_scheduled_payment(): void
     {
         // 1️⃣ Arrange 🏗
-        $loan = $this->loanService->createLoan(
+        $loan = LoanFacade::createLoan(
             $this->customer,
             5000,
             CurrencyType::TRY,
@@ -209,7 +207,7 @@ class LoanServiceTest extends TestCase
         $receivedAt = Carbon::parse('2022-02-20');
 
         // 2️⃣ Act 🏋🏻‍
-        $loan = $this->loanService->repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
+        $loan = LoanFacade::repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
 
         // 3️⃣ Assert ✅
         // Asserting Loan values
@@ -256,7 +254,7 @@ class LoanServiceTest extends TestCase
     public function can_not_pay_more_than_outstanding_amount(): void
     {
         // 1️⃣ Arrange 🏗
-        $loan = $this->loanService->createLoan(
+        $loan = LoanFacade::createLoan(
             $this->customer,
             5000,
             CurrencyType::TRY,
@@ -268,7 +266,7 @@ class LoanServiceTest extends TestCase
         $this->expectException(AmountHigherThanOutstandingAmountException::class);
 
         // 2️⃣ Act 🏋🏻‍
-        $this->loanService->repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
+        LoanFacade::repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
     }
 
     /** @test */
@@ -281,7 +279,7 @@ class LoanServiceTest extends TestCase
         $this->expectException(AlreadyRepaidException::class);
 
         // 2️⃣ Act 🏋🏻‍
-        $this->loanService->repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
+        LoanFacade::repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
     }
 
     /**
