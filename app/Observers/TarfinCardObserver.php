@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\TarfinCard;
-use App\Notifications\TarfinCardCreatedNotification;
+use App\Notifications\TarfinCardDeletedNotification;
 
 class TarfinCardObserver
 {
@@ -15,13 +15,14 @@ class TarfinCardObserver
     public $afterCommit = true;
 
     /**
-     * Handle the TarfinCard "created" event.
+     * Handle the TarfinCard "deleted" event.
      *
      * @param  \App\Models\TarfinCard  $tarfinCard
+     *
      * @return void
      */
-    public function created(TarfinCard $tarfinCard): void
+    public function deleted(TarfinCard $tarfinCard): void
     {
-        $tarfinCard->user->notify(new TarfinCardCreatedNotification($tarfinCard));
+        $tarfinCard->user->notify(new TarfinCardDeletedNotification($tarfinCard));
     }
 }

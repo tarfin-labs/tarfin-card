@@ -36,6 +36,7 @@ class TarfinCardTransactionController extends Controller
      */
     public function store(TarfinCardTransactionCreateRequest $request, TarfinCard $tarfinCard): TarfinCardTransactionResource
     {
+        /** @var TarfinCardTransaction $newTarfinCardTransaction */
         $newTarfinCardTransaction = $tarfinCard->transactions()->create($request->validated());
 
         ProcessTarfinCardTransactionJob::dispatchAfterResponse($newTarfinCardTransaction->id);
