@@ -18,7 +18,6 @@ class TarfinCardObserver
      * Handle the TarfinCard "deleted" event.
      *
      * @param  \App\Models\TarfinCard  $tarfinCard
-     *
      * @return void
      */
     public function deleted(TarfinCard $tarfinCard): void

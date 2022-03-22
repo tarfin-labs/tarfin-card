@@ -39,7 +39,6 @@ class TarfinCardDeletedNotification extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     *
      * @return \Illuminate\Http\Client\Response
      */
     public function toMail($notifiable): Response

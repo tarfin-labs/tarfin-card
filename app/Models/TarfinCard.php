@@ -71,7 +71,6 @@ class TarfinCard extends Model
      * Scope active Tarfin Cards.
      *
      * @param  Builder  $query
-     *
      * @return Builder
      */
     public function scopeActive(Builder $query): Builder

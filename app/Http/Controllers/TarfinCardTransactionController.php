@@ -17,8 +17,7 @@ class TarfinCardTransactionController extends Controller
      * Display a listing of the TarfinCardTransaction for the given TarfinCard.
      *
      * @param  \App\Http\Requests\TarfinCardTransactionViewAnyRequest  $request
-     * @param  \App\Models\TarfinCard                                  $tarfinCard
-     *
+     * @param  \App\Models\TarfinCard  $tarfinCard
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(TarfinCardTransactionViewAnyRequest $request, TarfinCard $tarfinCard): AnonymousResourceCollection
@@ -30,8 +29,7 @@ class TarfinCardTransactionController extends Controller
      * Store a newly created TarfinCardTransaction in storage.
      *
      * @param  \App\Http\Requests\TarfinCardTransactionCreateRequest  $request
-     * @param  \App\Models\TarfinCard                                 $tarfinCard
-     *
+     * @param  \App\Models\TarfinCard  $tarfinCard
      * @return \App\Http\Resources\TarfinCardTransactionResource
      */
     public function store(TarfinCardTransactionCreateRequest $request, TarfinCard $tarfinCard): TarfinCardTransactionResource
@@ -48,8 +46,7 @@ class TarfinCardTransactionController extends Controller
      * Display the specified TarfinCardTransaction.
      *
      * @param  \App\Http\Requests\TarfinCardTransactionViewRequest  $request
-     * @param  \App\Models\TarfinCardTransaction                    $tarfinCardTransaction
-     *
+     * @param  \App\Models\TarfinCardTransaction  $tarfinCardTransaction
      * @return \App\Http\Resources\TarfinCardTransactionResource
      */
     public function show(TarfinCardTransactionViewRequest $request, TarfinCardTransaction $tarfinCardTransaction): TarfinCardTransactionResource

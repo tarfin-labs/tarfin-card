@@ -14,9 +14,8 @@ class TarfinCardTransactionPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User        $user
+     * @param  \App\Models\User  $user
      * @param  \App\Models\TarfinCard  $tarfinCard
-     *
      * @return bool
      */
     public function viewAny(User $user, TarfinCard $tarfinCard): bool
@@ -27,9 +26,8 @@ class TarfinCardTransactionPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User                   $user
+     * @param  \App\Models\User  $user
      * @param  \App\Models\TarfinCardTransaction  $tarfinCardTransaction
-     *
      * @return bool
      */
     public function view(User $user, TarfinCardTransaction $tarfinCardTransaction): bool
@@ -40,9 +38,8 @@ class TarfinCardTransactionPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User        $user
+     * @param  \App\Models\User  $user
      * @param  \App\Models\TarfinCard  $tarfinCard
-     *
      * @return bool
      */
     public function create(User $user, TarfinCard $tarfinCard): bool

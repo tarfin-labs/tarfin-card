@@ -36,7 +36,6 @@ class TarfinCardFactory extends Factory
      * Set customer for Tarfin Card.
      *
      * @param  \App\Models\User  $customer
-     *
      * @return Factory
      */
     public function forCustomer(User $customer): Factory
