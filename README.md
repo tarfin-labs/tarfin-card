@@ -121,14 +121,16 @@ geçmesi için gerekli kodu yazmalısın.
    `php artisan test`
 10. Kodlarını gönder (`push`) ve `feature brach`'inden yeni bir `Pull Request` oluştur ve bizi haberdar et.
 
-<details>
-   <summary>For English</summary>
+---
 
 <div align="center">
 
 ## TarfinCard Challenge
 
 </div>
+
+<details>
+   <summary>Click to expand</summary>
 
 This challenge's main purpose is to determine your coding style and choices.
 
