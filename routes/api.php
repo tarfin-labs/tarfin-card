@@ -3,7 +3,16 @@
 use App\Http\Controllers\TarfinCardController;
 use App\Http\Controllers\TarfinCardTransactionController;
 
-Route::apiResource('tarfin-cards', TarfinCardController::class);
-Route::apiResource('tarfin-cards.tarfin-card-transactions', TarfinCardTransactionController::class)
-    ->only(['index', 'show', 'store'])
-    ->shallow();
+Route::apiResource(
+    name: 'tarfin-cards',
+    controller: TarfinCardController::class
+);
+
+Route::apiResource(
+    name: 'tarfin-cards.tarfin-card-transactions',
+    controller: TarfinCardTransactionController::class
+)->only([
+    'index',
+    'show',
+    'store',
+])->shallow();
