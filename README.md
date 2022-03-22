@@ -8,7 +8,125 @@
 
 <div align="center">
 
-## Card Challenge
+## TarfinKart Problemi
+
+</div>
+
+Bu problemin temel amacı, kodlama stilini ve seçimlerini belirleyebilmektir.
+
+`TarfinKart Problemi` benzeri görülmemiş bir çözüm geliştirmeyi veya son teknoloji araçları kullanabilmeyi gerektirmiyor
+ve istediğimiz tam olarak da bu: yoldan sapmak yerine kodlama stiline odaklanmak istiyoruz.
+
+Bu bağlamda; problem içinde "doğrular veya yanlışlar" yoktur. "Hileli kısımlar veya kelime oyuları" da yoktur. Sadece
+nasıl kod geliştirdiğini daha iyi anlamak istiyoruz.
+
+Bu aynı zamanda daha anlamlı ve olumlu bir teknik görüşme yapmamızı sağlar. Mülakatlarda beyaz tahta kullanmaktan
+hoşlanmıyoruz, bu nedenle tartışacak bazı somut kodlara sahip olmayı tercih ederiz. Böylece yapacağımız teknik mülakatın
+çok daha eğlenceli ve verimli hale geleceğine inanıyoruz.
+
+Soruların mı var? Bize yazarak bu problemi geliştirmemize yardımcı olabilirsin. Sana yardımcı olmaktan mutluluk
+duyarız 🙂.
+
+### Problem #01
+
+Bu problemde Tarfin'in müşterilerine kredi kartı benzeri bir **Kart** (`TarfinCard`) verdiğini ve müşterilerin bu kartlarla
+çeşitli finansal işlemler (`TarfinCardTransaction`) yapabildiğini varsayıyoruz.
+
+#### Amaç
+
+`TarfinCard` ve `TarfinCardTransaction` API'lerini ve bunlara ait `Policy`'leri, `Validation`'ları ve `Resource`'ları
+test etmek için `Feature Test`'ler oluştur.
+
+#### Uygulama Detayları
+
+- Her müşterinin birden fazla `TarfinCard`ı olabilir ve her `TarfinCard`ın birden fazla `TarfinCardTransaction`ı olabilir.
+- Müşteriler kendi `TarfinCard`larını oluşturabilmeli, güncelleyebilmeli, görebilmeli, listeleyebilmeli ve silebilmelidir.
+- Müşteriler her bir `TarfinCard`'a ait `TarfinCardTransaction`ınlarını listeleyebilmeli, görebilmeli ve oluşturabilmelidir.
+
+#### Sorgula
+
+**TarfinCard** ve **TarfinCardTransaction** `route`'larını, `controller`'larını, `request`'lerini, `resource`'
+larını, `policy`'lerini baştan sona okuyup incele. Nasıl çalıştığını anlamaya çalış ve bu `API`'leri test etmek için
+mümkün olduğunca çok test yaz.
+
+`TarfinCardControllerTest` ve `TarfinCardTransactionControllerTest` Feature test dosyaları senin için zaten oluşturuldu.
+İçinde fikir vermesi açısından örnek test isimleri var. Sadece testleri tamamlaman ve gerekli gördüğün yeni testler
+yazman gerekiyor.
+
+#### İpuçları
+
+- Olumlu ve olumsuz senaryoları doğrula
+- `API`'den dönen cevapları ve veritabanına kaydedilen değerleri doğrula
+- Müşteri sadece kendi `TarfinCard`'ı ile işlem yapabilir.
+
+**ÖNEMLİ:** Bu problemi çözmek için **SADECE** `Feature Test` dosyalarında değişiklik yapabilirsin.
+
+---
+
+### PROBLEM #02
+
+#### Amaç
+
+Geri ödemeleri yönetmek üzere bir **Borç Servisi** (`LoanService`) oluştur. Bu servisi yazarken, halihazırda senin için
+yazılmış olan, `Unit` testlerini baz almalısın.
+
+#### Uygulama Detayları
+
+- Her müşterinin bir veya daha fazla **Borcu** (`Loan`) olabilir.
+- Bu **Borç**lar (`Loan`) 3 veya 6 aylık olarak taksitlendirilebilir ve bu vadelere ait **Planlanmış Geri Ödeme**leri (`ScheduledRepayment`) bulunur.
+- **Borç**lar **Alınan Ödeme**ler (`ReceivedRepayment`) ile geri ödenir.
+
+Örneğin:
+
+2022-01-01 tarihinde oluşturulmuş 3000TL tutarındaki 3 taksitli **Borç**
+
+- 2022-02-01 tarihinde 1000 TL'lik bir **Planlanmış Geri Ödeme** (`ScheduledRepayment`)
+- 2022-03-01 tarihinde 1000 TL'lik bir **Planlanmış Geri Ödeme** (`ScheduledRepayment`)
+- 2022-04-01 tarihinde 1000 TL'lik bir **Planlanmış Geri Ödeme** (`ScheduledRepayment`)
+
+Müşteri her bir **Planlanmış Geri Ödeme** (`ScheduledRepayment`) tutarının tamamını geri ödeyebilir. Fakat isterse
+**Planlanmış Geri Ödeme** (`ScheduledRepayment`) tutarının sadece bir kısmını veya vadesi gelmemiş olsa bile, borcunun
+tamamını ödeyebilir.
+
+#### Sorgula
+
+Nasıl çalışması gerektiğini anlamak için `LoanService` (**Borç Servisi**) Unit testlerini iyice oku. Testlerin başarılı bir
+şekilde çalışabilmesi için yapman gerekenler arasında şunlar olabilir:
+
+- `Loan`, `ReceivedRepayment` ve `ScheduledRepayment` Modelleri için `Factory`ler ve `Migration`lar
+- Borç Servisi (`LoanService`)
+- `Exception`lar
+- Sabit değerler (`constants`) için ayrı sınıflar (`classes`)
+
+**ÖNEMLİ:** Bu problemi çözmek için Unit test dosyalarında değişiklik **yapmamalısın**. Sadece Unit testlerin başarıyla
+geçmesi için gerekli kodu yazmalısın.
+
+---
+
+### Geliştirme Ortamının Hazırlanması
+
+1. Bu `Repo`'yu kişisel GitHub hesabına `fork`'la.
+2. `main` `branch`'inden yeni bir `feature branch`'i oluştur (`checkout`).
+3. `.env.example` dosyasından yeni bir `.env` dosyası oluştur.    
+   `cp .env.example .env`
+4. Composer paketlerini yükle.  
+   `composer install`
+5. Bir sqlite veritabanı dosyası oluştur.  
+   `touch database/database.sqlite`
+6. Laravel için bir `application key` oluştur.
+   `php artisan key:generate`
+7. Yaptığın değişikliklerin (`commit`) [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et.
+8. En fazla 15dk'da bir `commit`'le.
+9. Tüm testler geçiyor mu diye kontrol et ✅  
+   `php artisan test`
+10. Kodlarını gönder (`push`) ve `feature brach`'inden yeni bir `Pull Request` oluştur ve bizi haberdar et.
+
+<details>
+   <summary>For English</summary>
+
+<div align="center">
+
+## TarfinCard Challenge
 
 </div>
 
@@ -44,7 +162,7 @@ and `TarfinCardTransactionControllerTest` are already created, you just need to 
 #### Tips
 
 - Verify positive and negative scenarios
-- Assert response and database values
+- Assert response, status, and database values
 - Customer can handle only his `TarfinCard`s
 
 **IMPORTANT:** For this challenge you `SHOULD ONLY` update the feature tests.
@@ -89,13 +207,15 @@ Read through the tests of `LoanService` to understand what is the logic to be im
 2. Checkout a new feature branch from `main`
 3. Copy the example .env file    
    `cp .env.example .env`
-4. Install composer dependencies  
-   `composer install`
-5. Create sqlite database file  
+4. Create sqlite database file  
    `touch database/database.sqlite`
+5. Install composer dependencies  
+   `composer install`
 6. Generate appliation key
    `php artisan key:generate`
 7. Make your changes in each [commit atomic](https://en.wikipedia.org/wiki/Atomic_commit)
 8. Check if the tests are green ✅  
    `php artisan test`
-10. Push the code and prepare the Pull Request from feature branch to `main` branch
+9. Push the code and prepare the Pull Request from feature branch to `main` branch
+
+</details>
