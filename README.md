@@ -15,7 +15,7 @@
 Bu problemin temel amacı, kodlama stilini ve seçimlerini belirleyebilmektir.
 
 `TarfinKart Problemi` benzeri görülmemiş bir çözüm geliştirmeyi veya son teknoloji araçları kullanabilmeyi gerektirmiyor
-ve istediğimiz tam olarak da bu: yoldan sapmak yerine kodlama stiline odaklanmak istiyoruz.
+ve istediğimiz tam olarak da bu: Yoldan sapmak yerine kodlama stiline odaklanmak istiyoruz.
 
 Bu bağlamda; problem içinde "doğrular veya yanlışlar" yoktur. "Hileli kısımlar veya kelime oyuları" da yoktur. Sadece
 nasıl kod geliştirdiğini daha iyi anlamak istiyoruz.
