@@ -285,7 +285,7 @@ class LoanServiceTest extends TestCase
     /**
      * DataProvider for test `can_create_loan_for_a_customer`.
      *
-     * @return array[]
+     * @return array<string, array<mixed>>
      */
     public function createLoanDataProvider(): array
     {
