@@ -11,7 +11,7 @@ class ComposerPostUpdateHandlerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'post-update:handle';
+    protected $signature = 'ide-helper:run';
 
     /**
      * The console command description.
