@@ -105,6 +105,8 @@ geçmesi için gerekli kodu yazmalısın.
 
 ### Geliştirme Ortamının Hazırlanması
 
+Bu bir **Laravel 9** projesidir ve **PHP 8.0.2+** veya **PHP 8.1+** gerektirir.
+
 1. Bu `Repo`'yu kişisel GitHub hesabına `fork`'la.
 2. `main` `branch`'inden yeni bir `feature branch`'i oluştur (`checkout`).
 3. `.env.example` dosyasından yeni bir `.env` dosyası oluştur.    
