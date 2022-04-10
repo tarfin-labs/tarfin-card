@@ -115,11 +115,13 @@ geçmesi için gerekli kodu yazmalısın.
    `composer install`
 6. Laravel için bir `application key` oluştur.
    `php artisan key:generate`
-7. Yaptığın değişikliklerin (`commit`) [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et.
-8. En fazla 15dk'da bir `commit`'le.
-9. Tüm testler geçiyor mu diye kontrol et ✅  
-   `php artisan test`
-10. Kodlarını gönder (`push`) ve `feature brach`'inden yeni bir `Pull Request` oluştur ve bizi haberdar et.
+7. Laravel Passport'u ayarla
+   `php artisan passport:install`
+8. Yaptığın değişikliklerin (`commit`) [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et.
+9. En fazla 15dk'da bir `commit`'le.
+10. Tüm testler geçiyor mu diye kontrol et ✅  
+    `php artisan test`
+11. Kodlarını gönder (`push`) ve `feature brach`'inden yeni bir `Pull Request` oluştur ve bizi haberdar et.
 
 ---
 
