@@ -109,10 +109,10 @@ geçmesi için gerekli kodu yazmalısın.
 2. `main` `branch`'inden yeni bir `feature branch`'i oluştur (`checkout`).
 3. `.env.example` dosyasından yeni bir `.env` dosyası oluştur.    
    `cp .env.example .env`
-4. Composer paketlerini yükle.  
-   `composer install`
-5. Bir sqlite veritabanı dosyası oluştur.  
+4. Bir sqlite veritabanı dosyası oluştur.  
    `touch database/database.sqlite`
+5. Composer paketlerini yükle.  
+   `composer install`
 6. Laravel için bir `application key` oluştur.
    `php artisan key:generate`
 7. Yaptığın değişikliklerin (`commit`) [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et.
