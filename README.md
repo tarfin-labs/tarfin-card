@@ -107,123 +107,25 @@ geçmesi için gerekli kodu yazmalısın.
 
 Bu bir **Laravel 9** projesidir ve **PHP 8.0.2+** veya **PHP 8.1+** gerektirir.
 
-1. Bu `Repo`'yu kişisel GitHub hesabına `fork`'la.
-2. `main` `branch`'inden yeni bir `feature branch`'i oluştur (`checkout`).
-3. `.env.example` dosyasından yeni bir `.env` dosyası oluştur.    
+1. Kişisel GitHub hesabında `tarfin-card` isimli `private` bir `repo` oluştur.
+2. GitHub hesabındaki `tarfin-card` `repo`sunu açtığında en alttaki `Import code` düğmesini göreceksin.   
+   Bu özelliği kullanarak `https://github.com/tarfin-labs/tarfin-card` adresindeki `repo`yu `import` et.
+3. `Private repo`'nu inceleyebilmemiz için, şu GitHub kullanıcılarını `Settings->Collaborators->Manage access->Add People` ile davet et:   
+   `frkcn`, `deligoez`, `hozdemir`, `tkaratug`
+5. `.env.example` dosyasından yeni bir `.env` dosyası oluştur.    
    `cp .env.example .env`
-4. Bir sqlite veritabanı dosyası oluştur.  
+6. Bir sqlite veritabanı dosyası oluştur.  
    `touch database/database.sqlite`
-5. Composer paketlerini yükle.  
+7. Composer paketlerini yükle.  
    `composer install`
-6. Laravel için bir `application key` oluştur.  
+8. Laravel için bir `application key` oluştur.  
    `php artisan key:generate`
-7. Veritabanı `migration`'larını çalıştır.  
+9. Veritabanı `migration`'larını çalıştır.  
    `php artisan migrate`
-8. Laravel Passport'u ayarla.  
-   `php artisan passport:install`
-9. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et.
-10. En fazla 15dk'da bir `commit`'le.
-11. Tüm testler geçiyor mu diye kontrol et ✅  
+10. Laravel Passport'u ayarla.  
+    `php artisan passport:install`
+11. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et.
+12. En fazla 15dk'da bir `commit`'le.
+13. Tüm testler geçiyor mu diye kontrol et ✅  
     `php artisan test`
-12. Kodlarını gönder (`push`) ve `feature brach`'inden yeni bir `Pull Request` oluştur ve bizi haberdar et.
 
----
-
-<div align="center">
-
-## TarfinCard Challenge
-
-</div>
-
-<details>
-   <summary>Click to expand</summary>
-
-This challenge's main purpose is to determine your coding style and choices.
-
-The `Tarfin Card Challenge` does not include any unique or cutting-edge technology, tools, or other elements, which is precisely the point: we want to focus on your coding style rather than get sidetracked.
-
-On that note, there are no "rights and wrongs" in this challenge, and there are no "trick portions." We simply want to get a better understanding of how you develop code.
-
-This also allows us to have a more meaningful and positive technical interview discussion. We don't like white-boarding in interviews, so having some concrete code to discuss would be preferable. That, we believe, makes the interview lot more entertaining and fruitful.
-
-Got problems? Help us improve this code challenge by writing to us. We’re happy to help 🙂
-
-### Test #01
-
-#### Objective
-
-Create feature tests to test `TarfinCard` and `TarfinCardTransaction` endpoints and their relative policies, validations
-and resources.
-
-#### Business Logic
-
-- Each customer can have multiple `TarfinCard`s and each `TarfinCard` can have many `TarfinCardTransaction`s.
-- A customer should be able to create, update, read, list, and delete his `TarfinCard`s.
-- For each `TarfinCard`, the customer should be able to list, read and create `TarfinCardTransaction`.
-
-#### Challenge
-
-Read through the *TarfinCard* and *TarfinCardTransaction* routes, controllers, requests, resources, and policies.
-Understand the logic and write as many tests as possible to validate the endpoints. The `TarfinCardControllerTest`
-and `TarfinCardTransactionControllerTest` are already created, you just need to complete them.
-
-#### Tips
-
-- Verify positive and negative scenarios
-- Assert response, status, and database values
-- Customer can handle only his `TarfinCard`s
-
-**IMPORTANT:** For this challenge you `SHOULD ONLY` update the feature tests.
-
----
-
-### Test #02
-
-#### Objective
-
-Create a `LoanService` to handle repayments based on complete unit tests that have already been created for you.
-
-#### Business Logic
-
-Each customer can have a credit `Loan` (due in 3 or 6 months). So a `Loan` has 3 or 6 `ScheduledRepayment`s (once each
-month), and it can be repaid with `ReceivedRepayment`s. Example:
-
-`Loan` of 3 months with amount 3000$, created on 2021-01-01
-
-- Scheduled Repayment of 1000$ due to 2021-02-01
-- Scheduled Repayment of 1000$ due to 2021-03-01
-- Scheduled Repayment of 1000$ due to 2021-04-01
-
-A customer can repay the full amount of each single `ScheduledRepayment`, but also can repay partially or in full.
-
-#### Challenge
-
-Read through the tests of `LoanService` to understand what is the logic to be implemented. To make the unit tests passed, you need to fulfill:
-
-- Models, Factories, Migrations for `Loan`, `ReceivedRepayment`, and `ScheduledRepayment`
-- Loan Service;
-- Exceptions
-- Separate classes for constants
-
-**IMPORTANT:** For this challenge you `SHOULD NOT` update the unit test.
-
----
-
-### Setup procedure
-
-1. Fork the repository in your personal GitHub account
-2. Checkout a new feature branch from `main`
-3. Copy the example .env file    
-   `cp .env.example .env`
-4. Create sqlite database file  
-   `touch database/database.sqlite`
-5. Install composer dependencies  
-   `composer install`
-6. Generate appliation key
-   `php artisan key:generate`
-7. Make your changes in each [commit atomic](https://en.wikipedia.org/wiki/Atomic_commit)
-8. Check if the tests are green ✅  
-   `php artisan test`
-9. Push the code and prepare the Pull Request from feature branch to `main` branch
-
-</details>
