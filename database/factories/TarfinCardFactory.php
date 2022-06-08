@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\TarfinCard;
@@ -18,8 +20,6 @@ class TarfinCardFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
     public function definition(): array
     {
@@ -34,9 +34,6 @@ class TarfinCardFactory extends Factory
 
     /**
      * Set customer for Tarfin Card.
-     *
-     * @param  \App\Models\User  $customer
-     * @return Factory
      */
     public function forCustomer(User $customer): Factory
     {
@@ -47,8 +44,6 @@ class TarfinCardFactory extends Factory
 
     /**
      * Indicate that the Tarfin Card is active.
-     *
-     * @return Factory
      */
     public function active(): Factory
     {
@@ -59,8 +54,6 @@ class TarfinCardFactory extends Factory
 
     /**
      * Indicate that the Tarfin Card is deactive.
-     *
-     * @return Factory
      */
     public function deactive(): Factory
     {
@@ -71,8 +64,6 @@ class TarfinCardFactory extends Factory
 
     /**
      * Indicate that the Tarfin Card is expired.
-     *
-     * @return Factory
      */
     public function expired(): Factory
     {

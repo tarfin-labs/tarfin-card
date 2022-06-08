@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
@@ -12,8 +14,11 @@ use Illuminate\Support\Facades\Http;
 class ProcessTarfinCardTransactionJob implements ShouldQueue
 {
     use Dispatchable;
+
     use InteractsWithQueue;
+
     use Queueable;
+
     use SerializesModels;
 
     protected int $tarfinCardTransactionId;
@@ -30,8 +35,6 @@ class ProcessTarfinCardTransactionJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
     public function handle(): void
     {

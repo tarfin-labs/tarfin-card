@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Enums\CurrencyType;
@@ -14,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TarfinCardTransaction extends Model
 {
     use HasFactory;
+
     use SoftDeletes;
 
     // region Attributes

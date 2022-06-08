@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Observers;
 
 use App\Models\TarfinCard;
@@ -16,9 +18,6 @@ class TarfinCardObserver
 
     /**
      * Handle the TarfinCard "deleted" event.
-     *
-     * @param  \App\Models\TarfinCard  $tarfinCard
-     * @return void
      */
     public function deleted(TarfinCard $tarfinCard): void
     {

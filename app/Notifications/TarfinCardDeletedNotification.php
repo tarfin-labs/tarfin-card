@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\Models\TarfinCard;
@@ -27,8 +29,7 @@ class TarfinCardDeletedNotification extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
-     * @return array
+     * @param mixed $notifiable
      */
     public function via($notifiable): array
     {
@@ -38,8 +39,7 @@ class TarfinCardDeletedNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Http\Client\Response
+     * @param mixed $notifiable
      */
     public function toMail($notifiable): Response
     {

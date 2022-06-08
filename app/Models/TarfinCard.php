@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -15,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TarfinCard extends Model
 {
     use HasFactory;
+
     use SoftDeletes;
 
     // region Attributes
@@ -41,8 +44,6 @@ class TarfinCard extends Model
 
     /**
      * Convert disabled_at in boolean attribute.
-     *
-     * @return bool
      */
     public function getIsActiveAttribute(): bool
     {
@@ -69,9 +70,6 @@ class TarfinCard extends Model
 
     /**
      * Scope active Tarfin Cards.
-     *
-     * @param  Builder  $query
-     * @return Builder
      */
     public function scopeActive(Builder $query): Builder
     {

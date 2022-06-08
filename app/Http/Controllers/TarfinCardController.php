@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TarfinCardCreateRequest;
@@ -16,9 +18,6 @@ class TarfinCardController extends Controller
 {
     /**
      * List all active Tarfin Cards.
-     *
-     * @param  \App\Http\Requests\TarfinCardViewAnyRequest  $request
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(TarfinCardViewAnyRequest $request): AnonymousResourceCollection
     {
@@ -32,9 +31,6 @@ class TarfinCardController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\TarfinCardCreateRequest  $request
-     * @return \App\Http\Resources\TarfinCardResource
      */
     public function store(TarfinCardCreateRequest $request): TarfinCardResource
     {
@@ -49,10 +45,6 @@ class TarfinCardController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Http\Requests\TarfinCardViewRequest  $request
-     * @param  \App\Models\TarfinCard  $tarfinCard
-     * @return \App\Http\Resources\TarfinCardResource
      */
     public function show(TarfinCardViewRequest $request, TarfinCard $tarfinCard): TarfinCardResource
     {
@@ -61,10 +53,6 @@ class TarfinCardController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\TarfinCardUpdateRequest  $request
-     * @param  \App\Models\TarfinCard  $tarfinCard
-     * @return \App\Http\Resources\TarfinCardResource
      */
     public function update(TarfinCardUpdateRequest $request, TarfinCard $tarfinCard): TarfinCardResource
     {
@@ -77,10 +65,6 @@ class TarfinCardController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Http\Requests\TarfinCardDeleteRequest  $request
-     * @param  \App\Models\TarfinCard  $tarfinCard
-     * @return \App\Http\Resources\TarfinCardResource
      */
     public function destroy(TarfinCardDeleteRequest $request, TarfinCard $tarfinCard): TarfinCardResource
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit;
 
 use App\Enums\CurrencyType;
@@ -19,6 +21,7 @@ use Tests\TestCase;
 class LoanServiceTest extends TestCase
 {
     use RefreshDatabase;
+
     use WithFaker;
 
     protected User $customer;
@@ -67,7 +70,9 @@ class LoanServiceTest extends TestCase
         $this->assertEquals($amount, $loan->scheduledRepayments()->sum('amount'));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function can_pay_a_scheduled_payment(): void
     {
         // 1. Arrange 🏗
@@ -128,7 +133,9 @@ class LoanServiceTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function can_pay_a_scheduled_payment_consecutively(): void
     {
         // 1. Arrange 🏗
@@ -189,7 +196,9 @@ class LoanServiceTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function can_pay_multiple_scheduled_payment(): void
     {
         // 1. Arrange 🏗
@@ -250,7 +259,9 @@ class LoanServiceTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function can_not_pay_more_than_outstanding_amount(): void
     {
         // 1. Arrange 🏗
@@ -269,7 +280,9 @@ class LoanServiceTest extends TestCase
         LoanFacade::repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function can_not_pay_a_loan_if_already_repaid(): void
     {
         // 1. Arrange 🏗
