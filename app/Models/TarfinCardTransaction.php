@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CurrencyType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,7 +27,7 @@ class TarfinCardTransaction extends Model
     protected $casts = [
         'tarfin_card_id' => 'integer',
         'amount'         => 'integer',
-        'currency_code'  => 'string',
+        'currency_code'  => CurrencyType::class,
     ];
 
     // endregion

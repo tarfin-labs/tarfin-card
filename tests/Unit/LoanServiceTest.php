@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Constants\CurrencyType;
-use App\Constants\PaymentStatus;
+use App\Enums\CurrencyType;
+use App\Enums\PaymentStatus;
 use App\Exceptions\AlreadyRepaidException;
 use App\Exceptions\AmountHigherThanOutstandingAmountException;
 use App\Facades\LoanFacade;

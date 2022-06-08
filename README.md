@@ -96,7 +96,7 @@ Nasıl çalışması gerektiğini anlamak için `LoanService` (**Borç Servisi**
 - `Loan`, `ReceivedRepayment` ve `ScheduledRepayment` Modelleri için `Factory`ler ve `Migration`lar
 - Borç Servisi (`LoanService`)
 - `Exception`lar
-- Sabit değerler (`constants`) için ayrı sınıflar (`classes`)
+- Sabit değerler (`Constants`) için ayrı sınıflar (`Enums`)
 
 **ÖNEMLİ:** Bu problemi çözmek için Unit test dosyalarında değişiklik **yapmamalısın**. Sadece Unit testlerin başarıyla
 geçmesi için gerekli kodu yazmalısın.
@@ -105,7 +105,7 @@ geçmesi için gerekli kodu yazmalısın.
 
 ### Geliştirme Ortamının Hazırlanması
 
-Bu bir **Laravel 9** projesidir ve **PHP 8.0.2+** veya **PHP 8.1+** gerektirir.
+Bu bir **Laravel 9** projesidir ve **PHP 8.1+** gerektirir.
 
 1. Kişisel GitHub hesabında `tarfin-card` isimli `private` bir `repo` oluştur.
 2. GitHub hesabındaki `tarfin-card` `repo`sunu açtığında en alttaki `Import code` düğmesini göreceksin.   
