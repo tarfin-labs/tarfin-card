@@ -12,78 +12,78 @@ class TarfinCardTransactionControllerTest extends TestCase
     /** @test */
     public function a_customer_can_create_a_tarfin_card_transaction(): void
     {
-        // 1️⃣ Arrange 🏗
+        // 1. Arrange 🏗
         // TODO:
 
-        // 2️⃣ Act 🏋🏻‍
+        // 2. Act 🏋🏻‍
         // TODO:
 
-        // 3️⃣ Assert ✅
+        // 3. Assert ✅
         // TODO:
     }
 
     /** @test */
     public function a_customer_can_not_create_a_tarfin_card_transaction_for_a_tarfin_card_of_another_customer(): void
     {
-        // 1️⃣ Arrange 🏗
+        // 1. Arrange 🏗
         // TODO:
 
-        // 2️⃣ Act 🏋🏻‍
+        // 2. Act 🏋🏻‍
         // TODO:
 
-        // 3️⃣ Assert ✅
+        // 3. Assert ✅
         // TODO:
     }
 
     /** @test */
     public function a_customer_can_see_a_tarfin_card_transaction(): void
     {
-        // 1️⃣ Arrange 🏗
+        // 1. Arrange 🏗
         // TODO:
 
-        // 2️⃣ Act 🏋🏻‍
+        // 2. Act 🏋🏻‍
         // TODO:
 
-        // 3️⃣ Assert ✅
+        // 3. Assert ✅
         // TODO:
     }
 
     /** @test */
     public function a_customer_can_not_see_a_tarfin_card_transaction_for_a_tarfin_card_of_another_customer(): void
     {
-        // 1️⃣ Arrange 🏗
+        // 1. Arrange 🏗
         // TODO:
 
-        // 2️⃣ Act 🏋🏻‍
+        // 2. Act 🏋🏻‍
         // TODO:
 
-        // 3️⃣ Assert ✅
+        // 3. Assert ✅
         // TODO:
     }
 
     /** @test */
     public function a_customer_can_list_tarfin_card_transactions(): void
     {
-        // 1️⃣ Arrange 🏗
+        // 1. Arrange 🏗
         // TODO:
 
-        // 2️⃣ Act 🏋🏻‍
+        // 2. Act 🏋🏻‍
         // TODO:
 
-        // 3️⃣ Assert ✅
+        // 3. Assert ✅
         // TODO:
     }
 
     /** @test */
     public function a_customer_can_not_list_tarfin_card_transactions_for_a_tarfin_card_of_another_customer(): void
     {
-        // 1️⃣ Arrange 🏗
+        // 1. Arrange 🏗
         // TODO:
 
-        // 2️⃣ Act 🏋🏻‍
+        // 2. Act 🏋🏻‍
         // TODO:
 
-        // 3️⃣ Assert ✅
+        // 3. Assert ✅
         // TODO:
     }
 
