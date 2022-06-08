@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
+        "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.12.3",
         "fakerphp/faker": "^1.9.1",
         "friendsofphp/php-cs-fixer": "^3.8",
