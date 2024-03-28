@@ -122,7 +122,7 @@ Bu bir **Laravel 9** projesidir ve **PHP 8.1+** gerektirir.
    `php artisan key:generate`
 9. Veritabanı `migration`'larını çalıştır.  
    `php artisan migrate`
-10. Laravel Passport'u ayarla.  
+10. `Authentication` işlemleri için Laravel Passport'u ayarla.  
     `php artisan passport:install`
 11. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et.
 12. En fazla 15dk'da bir `commit`'le.
