@@ -34,11 +34,13 @@ class TarfinCardController extends Controller
      */
     public function store(TarfinCardCreateRequest $request): TarfinCardResource
     {
-        $tarfinCard = $request->user()->tarfinCards()->create([
-            'type'            => $request->input('type'),
-            'number'          => rand(1000000000000000, 9999999999999999),
-            'expiration_date' => Carbon::now()->addYear(),
-        ]);
+        $tarfinCard = $request->user()
+            ->tarfinCards()
+            ->create([
+                'type'            => $request->string(key: 'type')->trim(),
+                'number'          => mt_rand(min: 10000000, max: 99999999) . mt_rand(min: 00000000, max: 99999999),
+                'expiration_date' => now()->addYear(),
+            ]);
 
         return new TarfinCardResource($tarfinCard);
     }
