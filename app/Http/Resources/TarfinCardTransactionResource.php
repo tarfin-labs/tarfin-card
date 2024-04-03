@@ -15,6 +15,7 @@ class TarfinCardTransactionResource extends JsonResource
      */
     public function toArray($request): array
     {
+        /** @var \App\Models\TarfinCardTransaction $this */
         return [
             'amount'        => $this->amount,
             'currency_code' => $this->currency_code,
