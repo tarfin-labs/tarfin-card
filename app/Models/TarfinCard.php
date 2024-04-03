@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TarfinCard extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     // region Attributes
@@ -56,12 +55,12 @@ class TarfinCard extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(related: User::class);
     }
 
     public function transactions(): HasMany
     {
-        return $this->hasMany(TarfinCardTransaction::class);
+        return $this->hasMany(related: TarfinCardTransaction::class);
     }
 
     // endregion
@@ -73,7 +72,7 @@ class TarfinCard extends Model
      */
     public function scopeActive(Builder $query): Builder
     {
-        return $query->whereNull('disabled_at');
+        return $query->whereNull(columns: 'disabled_at');
     }
 
     // endregion
