@@ -16,7 +16,10 @@ class TarfinCardCreateRequest extends FormRequest
     public function authorize(): bool
     {
         return $this->user()
-            ->can(abilities: 'create', arguments: TarfinCard::class);
+                    ->can(
+                        abilities: 'create',
+                        arguments: TarfinCard::class
+                    );
     }
 
     /**
