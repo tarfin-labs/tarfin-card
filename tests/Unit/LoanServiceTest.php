@@ -357,10 +357,15 @@ class LoanServiceTest extends TestCase
         ]);
 
         // 3. Assert
-        $this->expectException(AlreadyRepaidException::class);
+        $this->expectException(exception: AlreadyRepaidException::class);
 
         // 2. Act
-        LoanFacade::repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
+        LoanFacade::repayLoan(
+            loan: $loan,
+            amount: 5001,
+            currencyCode: CurrencyType::TRY,
+            receivedAt: now()
+        );
     }
 
     /**
