@@ -17,7 +17,7 @@ use Illuminate\Support\Carbon;
 class TarfinCardController extends Controller
 {
     /**
-     * List all active Tarfin Cards.
+     * Retrieve a collection of Tarfin cards for the authenticated user.
      */
     public function index(TarfinCardViewAnyRequest $request): AnonymousResourceCollection
     {
@@ -26,7 +26,7 @@ class TarfinCardController extends Controller
                                ->active()
                                ->get();
 
-        return TarfinCardResource::collection($tarfinCards);
+        return TarfinCardResource::collection(resource: $tarfinCards);
     }
 
     /**
