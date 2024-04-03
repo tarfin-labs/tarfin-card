@@ -14,14 +14,10 @@ class TarfinCardViewAnyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('view-any', TarfinCard::class);
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     */
-    public function rules(): array
-    {
-        return [];
+        return $this->user()
+            ->can(
+                abilities: 'view-any',
+                arguments: TarfinCard::class
+            );
     }
 }
