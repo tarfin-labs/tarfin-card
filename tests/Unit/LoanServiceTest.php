@@ -326,18 +326,23 @@ class LoanServiceTest extends TestCase
     {
         // 1. Arrange
         $loan = LoanFacade::createLoan(
-            $this->customer,
-            5000,
-            CurrencyType::TRY,
-            3,
-            Carbon::parse('2024-01-20'),
+            customer: $this->customer,
+            amount: 5000,
+            currencyCode: CurrencyType::TRY,
+            terms: 3,
+            processedAt: Carbon::parse(time: '2024-01-20'),
         );
 
         // 3. Assert
-        $this->expectException(AmountHigherThanOutstandingAmountException::class);
+        $this->expectException(exception: AmountHigherThanOutstandingAmountException::class);
 
         // 2. Act
-        LoanFacade::repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
+        LoanFacade::repayLoan(
+            loan: $loan,
+            amount: 5001,
+            currencyCode: CurrencyType::TRY,
+            receivedAt: now()
+        );
     }
 
     /**
