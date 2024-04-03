@@ -13,7 +13,7 @@ Route::apiResource(
 Route::apiResource(
     name: 'tarfin-cards.tarfin-card-transactions',
     controller: TarfinCardTransactionController::class
-)->only([
+)->only(methods: [
     'index',
     'show',
     'store',
