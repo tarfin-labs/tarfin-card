@@ -36,37 +36,58 @@ class LoanServiceTest extends TestCase
      * @test
      * @dataProvider createLoanDataProvider
      */
-    public function can_create_loan_for_a_customer($terms, $amount, $currencyCode, $processedAt, $scheduledRepaymentAmounts): void
-    {
+    public function can_create_loan_for_a_customer(
+        int $terms,
+        int $amount,
+        CurrencyType $currencyCode,
+        Carbon $processedAt,
+        array $scheduledRepaymentAmounts
+    ): void {
         // 2. Act
-        $loan = LoanFacade::createLoan($this->customer, $amount, $currencyCode, $terms, $processedAt);
+        $loan = LoanFacade::createLoan(
+            customer: $this->customer,
+            amount: $amount,
+            currencyCode: $currencyCode,
+            terms: $terms,
+            processedAt: $processedAt
+        );
 
         // 3. Assert
-        $this->assertDatabaseHas(Loan::class, [
-            'id'                 => $loan->id,
-            'user_id'            => $this->customer->id,
-            'amount'             => $amount,
-            'terms'              => $terms,
-            'outstanding_amount' => $amount,
-            'currency_code'      => $currencyCode,
-            'processed_at'       => $processedAt,
-            'status'             => PaymentStatus::DUE,
-        ]);
-
-        $this->assertCount($terms, $loan->scheduledRepayments);
-
-        foreach ($loan->scheduledRepayments as $index => $scheduledRepayment) {
-            $this->assertDatabaseHas(ScheduledRepayment::class, [
-                'loan_id'            => $loan->id,
-                'amount'             => $scheduledRepaymentAmounts[$index],
-                'outstanding_amount' => $scheduledRepaymentAmounts[$index],
+        $this->assertDatabaseHas(
+            table: Loan::class,
+            data: [
+                'id'                 => $loan->id,
+                'user_id'            => $this->customer->id,
+                'amount'             => $amount,
+                'terms'              => $terms,
+                'outstanding_amount' => $amount,
                 'currency_code'      => $currencyCode,
-                'due_date'           => $processedAt->clone()->addMonth($index + 1),
+                'processed_at'       => $processedAt,
                 'status'             => PaymentStatus::DUE,
             ]);
+
+        $this->assertCount(
+            expectedCount: $terms,
+            haystack: $loan->scheduledRepayments
+        );
+
+        foreach ($loan->scheduledRepayments as $index => $scheduledRepayment) {
+            $this->assertDatabaseHas(
+                table: ScheduledRepayment::class,
+                data: [
+                    'loan_id'            => $loan->id,
+                    'amount'             => $scheduledRepaymentAmounts[$index],
+                    'outstanding_amount' => $scheduledRepaymentAmounts[$index],
+                    'currency_code'      => $currencyCode,
+                    'due_date'           => $processedAt->clone()->addMonths(value: $index + 1),
+                    'status'             => PaymentStatus::DUE,
+                ]);
         }
 
-        $this->assertEquals($amount, $loan->scheduledRepayments()->sum('amount'));
+        $this->assertEquals(
+            expected: $amount,
+            actual: $loan->scheduledRepayments()->sum(column: 'amount')
+        );
     }
 
     /**
@@ -146,7 +167,7 @@ class LoanServiceTest extends TestCase
             Carbon::parse('2022-01-20'),
         );
 
-        // The First two scheduled repayments are already repaid and the last one is due
+        // The first two scheduled repayments are already repaid and the last one is due
         $loan->update(['outstanding_amount' => 5000 - (1666 * 2)]);
 
         foreach ($loan->scheduledRepayments->take(2) as $scheduledRepayment) {
@@ -229,7 +250,7 @@ class LoanServiceTest extends TestCase
             'processed_at'       => Carbon::parse('2022-01-20'),
         ]);
 
-        // Asserting First Scheduled Repayment is Repaid
+        // Asserting the First Scheduled Repayment is Repaid
         $this->assertDatabaseHas(ScheduledRepayment::class, [
             'loan_id'            => $loan->id,
             'amount'             => 1666,
@@ -286,9 +307,9 @@ class LoanServiceTest extends TestCase
     {
         // 1. Arrange
         $loan = Loan::factory()->create([
-                                            'status'             => PaymentStatus::REPAID,
-                                            'outstanding_amount' => 0,
-                                        ]);
+            'status'             => PaymentStatus::REPAID,
+            'outstanding_amount' => 0,
+        ]);
 
         // 3. Assert
         $this->expectException(AlreadyRepaidException::class);
