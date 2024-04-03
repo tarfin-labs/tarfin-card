@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TarfinCardTransaction extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     // region Attributes
@@ -39,7 +38,7 @@ class TarfinCardTransaction extends Model
 
     public function tarfinCard(): BelongsTo
     {
-        return $this->belongsTo(TarfinCard::class);
+        return $this->belongsTo(related: TarfinCard::class);
     }
 
     // endregion
