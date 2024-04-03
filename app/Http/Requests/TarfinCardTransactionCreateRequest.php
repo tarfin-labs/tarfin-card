@@ -7,6 +7,7 @@ namespace App\Http\Requests;
 use App\Enums\CurrencyType;
 use App\Models\TarfinCardTransaction;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class TarfinCardTransactionCreateRequest extends FormRequest
 {
@@ -34,7 +35,8 @@ class TarfinCardTransactionCreateRequest extends FormRequest
             ],
             'currency_code' => [
                 'required',
-                'string', new Enum(CurrencyType::class)
+                'string',
+                new Enum(type: CurrencyType::class)
             ],
         ];
     }
