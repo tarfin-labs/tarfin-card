@@ -176,17 +176,17 @@ class LoanServiceTest extends TestCase
     {
         // 1. Arrange
         $loan = LoanFacade::createLoan(
-            $this->customer,
-            5000,
-            CurrencyType::TRY,
-            3,
-            Carbon::parse('2022-01-20'),
+            customer: $this->customer,
+            amount: 5000,
+            currencyCode: CurrencyType::TRY,
+            terms: 3,
+            processedAt: Carbon::parse(time: '2022-01-20'),
         );
 
-        // The first two scheduled repayments are already repaid and the last one is due
+        // The first two ScheduledRepayments are already repaid and the last one is due
         $loan->update(['outstanding_amount' => 5000 - (1666 * 2)]);
 
-        foreach ($loan->scheduledRepayments->take(2) as $scheduledRepayment) {
+        foreach ($loan->scheduledRepayments->take(limit: 2) as $scheduledRepayment) {
             $scheduledRepayment->update([
                 'status'             => PaymentStatus::REPAID,
                 'outstanding_amount' => 0,
@@ -195,41 +195,52 @@ class LoanServiceTest extends TestCase
 
         $receivedRepayment = 1668;
         $currencyCode = CurrencyType::TRY;
-        $receivedAt = Carbon::parse('2022-04-20');
+        $receivedAt = Carbon::parse(time: '2022-04-20');
 
         // 2. Act
         // Repaying the last one
-        $loan = LoanFacade::repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
+        $loan = LoanFacade::repayLoan(
+            loan: $loan,
+            amount: $receivedRepayment,
+            currencyCode: $currencyCode,
+            receivedAt: $receivedAt
+        );
 
         // 3. Assert
-        // Asserting Loan values
-        $this->assertDatabaseHas(Loan::class, [
-            'id'                 => $loan->id,
-            'user_id'            => $this->customer->id,
-            'amount'             => 5000,
-            'outstanding_amount' => 0,
-            'currency_code'      => $currencyCode,
-            'status'             => PaymentStatus::REPAID,
-            'processed_at'       => Carbon::parse('2022-01-20'),
-        ]);
+        // Asserting the Loan values
+        $this->assertDatabaseHas(
+            table: Loan::class,
+            data: [
+                'id'                 => $loan->id,
+                'user_id'            => $this->customer->id,
+                'amount'             => 5000,
+                'outstanding_amount' => 0,
+                'currency_code'      => $currencyCode,
+                'status'             => PaymentStatus::REPAID,
+                'processed_at'       => Carbon::parse(time: '2022-01-20'),
+            ]);
 
-        // Asserting Last Scheduled Repayment is Repaid
-        $this->assertDatabaseHas(ScheduledRepayment::class, [
-            'loan_id'            => $loan->id,
-            'amount'             => 1668,
-            'outstanding_amount' => 0,
-            'currency_code'      => $currencyCode,
-            'due_date'           => Carbon::parse('2022-04-20'),
-            'status'             => PaymentStatus::REPAID,
-        ]);
+        // Asserting Last Scheduled Repayment is repaid
+        $this->assertDatabaseHas(
+            table: ScheduledRepayment::class,
+            data: [
+                'loan_id'            => $loan->id,
+                'amount'             => 1668,
+                'outstanding_amount' => 0,
+                'currency_code'      => $currencyCode,
+                'due_date'           => Carbon::parse(time: '2022-04-20'),
+                'status'             => PaymentStatus::REPAID,
+            ]);
 
         // Asserting Received Repayment
-        $this->assertDatabaseHas(ReceivedRepayment::class, [
-            'loan_id'       => $loan->id,
-            'amount'        => 1668,
-            'currency_code' => $currencyCode,
-            'received_at'   => Carbon::parse('2022-04-20'),
-        ]);
+        $this->assertDatabaseHas(
+            table: ReceivedRepayment::class,
+            data: [
+                'loan_id'       => $loan->id,
+                'amount'        => 1668,
+                'currency_code' => $currencyCode,
+                'received_at'   => Carbon::parse(time: '2022-04-20'),
+            ]);
     }
 
     /**
