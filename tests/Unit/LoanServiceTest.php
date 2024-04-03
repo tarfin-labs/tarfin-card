@@ -21,7 +21,6 @@ use Tests\TestCase;
 class LoanServiceTest extends TestCase
 {
     use RefreshDatabase;
-
     use WithFaker;
 
     protected User $customer;
@@ -39,10 +38,10 @@ class LoanServiceTest extends TestCase
      */
     public function can_create_loan_for_a_customer($terms, $amount, $currencyCode, $processedAt, $scheduledRepaymentAmounts): void
     {
-        // 2. Act 🏋🏻‍
+        // 2. Act
         $loan = LoanFacade::createLoan($this->customer, $amount, $currencyCode, $terms, $processedAt);
 
-        // 3. Assert ✅
+        // 3. Assert
         $this->assertDatabaseHas(Loan::class, [
             'id'                 => $loan->id,
             'user_id'            => $this->customer->id,
@@ -75,7 +74,7 @@ class LoanServiceTest extends TestCase
      */
     public function can_pay_a_scheduled_payment(): void
     {
-        // 1. Arrange 🏗
+        // 1. Arrange
         $loan = LoanFacade::createLoan(
             $this->customer,
             5000,
@@ -88,10 +87,10 @@ class LoanServiceTest extends TestCase
         $currencyCode = CurrencyType::TRY;
         $receivedAt = Carbon::parse('2022-02-20');
 
-        // 2. Act 🏋🏻‍
+        // 2. Act
         $loan = LoanFacade::repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
 
-        // 3. Assert ✅
+        // 3. Assert
         // Assert loan values
         $this->assertDatabaseHas(Loan::class, [
             'id'                 => $loan->id,
@@ -138,7 +137,7 @@ class LoanServiceTest extends TestCase
      */
     public function can_pay_a_scheduled_payment_consecutively(): void
     {
-        // 1. Arrange 🏗
+        // 1. Arrange
         $loan = LoanFacade::createLoan(
             $this->customer,
             5000,
@@ -161,11 +160,11 @@ class LoanServiceTest extends TestCase
         $currencyCode = CurrencyType::TRY;
         $receivedAt = Carbon::parse('2022-04-20');
 
-        // 2. Act 🏋🏻‍
+        // 2. Act
         // Repaying the last one
         $loan = LoanFacade::repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
 
-        // 3. Assert ✅
+        // 3. Assert
         // Asserting Loan values
         $this->assertDatabaseHas(Loan::class, [
             'id'                 => $loan->id,
@@ -201,7 +200,7 @@ class LoanServiceTest extends TestCase
      */
     public function can_pay_multiple_scheduled_payment(): void
     {
-        // 1. Arrange 🏗
+        // 1. Arrange
         $loan = LoanFacade::createLoan(
             $this->customer,
             5000,
@@ -215,10 +214,10 @@ class LoanServiceTest extends TestCase
         $currencyCode = CurrencyType::TRY;
         $receivedAt = Carbon::parse('2022-02-20');
 
-        // 2. Act 🏋🏻‍
+        // 2. Act
         $loan = LoanFacade::repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
 
-        // 3. Assert ✅
+        // 3. Assert
         // Asserting Loan values
         $this->assertDatabaseHas(Loan::class, [
             'id'                 => $loan->id,
@@ -264,7 +263,7 @@ class LoanServiceTest extends TestCase
      */
     public function can_not_pay_more_than_outstanding_amount(): void
     {
-        // 1. Arrange 🏗
+        // 1. Arrange
         $loan = LoanFacade::createLoan(
             $this->customer,
             5000,
@@ -273,10 +272,10 @@ class LoanServiceTest extends TestCase
             Carbon::parse('2022-01-20'),
         );
 
-        // 3. Assert ✅
+        // 3. Assert
         $this->expectException(AmountHigherThanOutstandingAmountException::class);
 
-        // 2. Act 🏋🏻‍
+        // 2. Act
         LoanFacade::repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
     }
 
@@ -285,16 +284,16 @@ class LoanServiceTest extends TestCase
      */
     public function can_not_pay_a_loan_if_already_repaid(): void
     {
-        // 1. Arrange 🏗
+        // 1. Arrange
         $loan = Loan::factory()->create([
                                             'status'             => PaymentStatus::REPAID,
                                             'outstanding_amount' => 0,
                                         ]);
 
-        // 3. Assert ✅
+        // 3. Assert
         $this->expectException(AlreadyRepaidException::class);
 
-        // 2. Act 🏋🏻‍
+        // 2. Act
         LoanFacade::repayLoan($loan, 5001, CurrencyType::TRY, Carbon::now());
     }
 
