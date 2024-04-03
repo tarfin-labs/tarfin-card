@@ -180,7 +180,7 @@ class LoanServiceTest extends TestCase
             amount: 5000,
             currencyCode: CurrencyType::TRY,
             terms: 3,
-            processedAt: Carbon::parse(time: '2022-01-20'),
+            processedAt: Carbon::parse(time: '2024-01-20'),
         );
 
         // The first two ScheduledRepayments are already repaid and the last one is due
@@ -195,7 +195,7 @@ class LoanServiceTest extends TestCase
 
         $receivedRepayment = 1668;
         $currencyCode = CurrencyType::TRY;
-        $receivedAt = Carbon::parse(time: '2022-04-20');
+        $receivedAt = Carbon::parse(time: '2024-04-20');
 
         // 2. Act
         // Repaying the last one
@@ -217,7 +217,7 @@ class LoanServiceTest extends TestCase
                 'outstanding_amount' => 0,
                 'currency_code'      => $currencyCode,
                 'status'             => PaymentStatus::REPAID,
-                'processed_at'       => Carbon::parse(time: '2022-01-20'),
+                'processed_at'       => Carbon::parse(time: '2024-01-20'),
             ]);
 
         // Asserting Last Scheduled Repayment is repaid
@@ -228,7 +228,7 @@ class LoanServiceTest extends TestCase
                 'amount'             => 1668,
                 'outstanding_amount' => 0,
                 'currency_code'      => $currencyCode,
-                'due_date'           => Carbon::parse(time: '2022-04-20'),
+                'due_date'           => Carbon::parse(time: '2024-04-20'),
                 'status'             => PaymentStatus::REPAID,
             ]);
 
@@ -239,7 +239,7 @@ class LoanServiceTest extends TestCase
                 'loan_id'       => $loan->id,
                 'amount'        => 1668,
                 'currency_code' => $currencyCode,
-                'received_at'   => Carbon::parse(time: '2022-04-20'),
+                'received_at'   => Carbon::parse(time: '2024-04-20'),
             ]);
     }
 
@@ -254,13 +254,13 @@ class LoanServiceTest extends TestCase
             5000,
             CurrencyType::TRY,
             3,
-            Carbon::parse('2022-01-20'),
+            Carbon::parse('2024-01-20'),
         );
 
         // Paying more than the first scheduled repayment amount
         $receivedRepayment = 2000;
         $currencyCode = CurrencyType::TRY;
-        $receivedAt = Carbon::parse('2022-02-20');
+        $receivedAt = Carbon::parse('2024-02-20');
 
         // 2. Act
         $loan = LoanFacade::repayLoan($loan, $receivedRepayment, $currencyCode, $receivedAt);
@@ -274,7 +274,7 @@ class LoanServiceTest extends TestCase
             'outstanding_amount' => 5000 - 2000,
             'currency_code'      => $currencyCode,
             'status'             => PaymentStatus::DUE,
-            'processed_at'       => Carbon::parse('2022-01-20'),
+            'processed_at'       => Carbon::parse('2024-01-20'),
         ]);
 
         // Asserting the First Scheduled Repayment is Repaid
@@ -283,7 +283,7 @@ class LoanServiceTest extends TestCase
             'amount'             => 1666,
             'outstanding_amount' => 0,
             'currency_code'      => $currencyCode,
-            'due_date'           => Carbon::parse('2022-02-20'),
+            'due_date'           => Carbon::parse('2024-02-20'),
             'status'             => PaymentStatus::REPAID,
         ]);
 
@@ -293,7 +293,7 @@ class LoanServiceTest extends TestCase
             'amount'             => 1666,
             'outstanding_amount' => 1332, // 1666 - (2000 - 1666)
             'currency_code'      => $currencyCode,
-            'due_date'           => Carbon::parse('2022-03-20'),
+            'due_date'           => Carbon::parse('2024-03-20'),
             'status'             => PaymentStatus::PARTIAL,
         ]);
 
@@ -302,7 +302,7 @@ class LoanServiceTest extends TestCase
             'loan_id'       => $loan->id,
             'amount'        => 2000,
             'currency_code' => $currencyCode,
-            'received_at'   => Carbon::parse('2022-02-20'),
+            'received_at'   => Carbon::parse('2024-02-20'),
         ]);
     }
 
@@ -317,7 +317,7 @@ class LoanServiceTest extends TestCase
             5000,
             CurrencyType::TRY,
             3,
-            Carbon::parse('2022-01-20'),
+            Carbon::parse('2024-01-20'),
         );
 
         // 3. Assert
