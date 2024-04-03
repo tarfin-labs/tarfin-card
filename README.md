@@ -12,20 +12,21 @@
 
 </div>
 
-Bu problemin temel amacı, kodlama stilini ve seçimlerini belirleyebilmektir.
+Bu problemin ana hedefi, senin kodlama stilini, tercihlerini anlayabilmemize ve aynı zamanda tecrübelerini ve
+yeteneklerini sergilemene/ortaya çıkarmana imkan tanımaktır.
 
-`TarfinKart Problemi` benzeri görülmemiş bir çözüm geliştirmeyi veya son teknoloji araçları kullanabilmeyi gerektirmiyor
-ve istediğimiz tam olarak da bu: Yoldan sapmak yerine kodlama stiline odaklanmak istiyoruz.
+TarfinKart Problemi, devrim niteliğinde çözümler geliştirmenizi ya da en son teknoloji araçları kullanmanızı
+gerektirmez; asıl odak noktamız tam da bu: Kodlama tarzına odaklanarak temelde neler yapabileceğini görmek istiyoruz.
 
-Bu bağlamda; problem içinde "doğrular veya yanlışlar" yoktur. "Hileli kısımlar veya kelime oyuları" da yoktur. Sadece
-nasıl kod geliştirdiğini daha iyi anlamak istiyoruz.
+Bu nedenle, bu problemde "doğru" veya "yanlış" gibi kesin kavramlar yoktur ve "hileli bölümler" ya da "kelime oyunları"
+gibi şeyler de bulunmamaktadır. Asıl amacımız, kod yazma tarzını daha iyi anlamaktır.
 
-Bu aynı zamanda daha anlamlı ve olumlu bir teknik görüşme yapmamızı sağlar. Mülakatlarda beyaz tahta kullanmaktan
-hoşlanmıyoruz, bu nedenle tartışacak bazı somut kodlara sahip olmayı tercih ederiz. Böylece yapacağımız teknik mülakatın
-çok daha eğlenceli ve verimli hale geleceğine inanıyoruz.
+Bu yaklaşım, daha samimi ve verimli teknik görüşmeler gerçekleştirmemizi sağlar. Beyaz tahta kullanarak mülakat yapmayı
+sevmiyoruz, bu yüzden somut kod örnekleri üzerinden tartışmayı tercih ediyoruz. Bu sayede teknik mülakatların çok daha
+keyifli ve başarılı geçeceğine inanıyoruz.
 
-Soruların mı var? Bize yazarak bu problemi geliştirmemize yardımcı olabilirsin. Sana yardımcı olmaktan mutluluk
-duyarız 🙂.
+Herhangi bir sorunuz mu var? Bize yazarak bu görevi daha da geliştirmemize katkıda bulunabilirsin. Yardımcı olmak bizim
+için bir zevktir 🙂.
 
 ### Problem #01
 
