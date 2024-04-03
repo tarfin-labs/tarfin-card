@@ -18,16 +18,20 @@ class TarfinCardTransactionController extends Controller
     /**
      * Display a listing of the TarfinCardTransaction for the given TarfinCard.
      */
-    public function index(TarfinCardTransactionViewAnyRequest $request, TarfinCard $tarfinCard): AnonymousResourceCollection
-    {
+    public function index(
+        TarfinCardTransactionViewAnyRequest $request,
+        TarfinCard $tarfinCard,
+    ): AnonymousResourceCollection {
         return TarfinCardTransactionResource::collection($tarfinCard->transactions);
     }
 
     /**
      * Store a newly created TarfinCardTransaction in storage.
      */
-    public function store(TarfinCardTransactionCreateRequest $request, TarfinCard $tarfinCard): TarfinCardTransactionResource
-    {
+    public function store(
+        TarfinCardTransactionCreateRequest $request,
+        TarfinCard $tarfinCard,
+    ): TarfinCardTransactionResource {
         /** @var \App\Models\TarfinCardTransaction $newTarfinCardTransaction */
         $newTarfinCardTransaction = $tarfinCard->transactions()->create($request->validated());
 
@@ -39,8 +43,10 @@ class TarfinCardTransactionController extends Controller
     /**
      * Display the specified TarfinCardTransaction.
      */
-    public function show(TarfinCardTransactionViewRequest $request, TarfinCardTransaction $tarfinCardTransaction): TarfinCardTransactionResource
-    {
+    public function show(
+        TarfinCardTransactionViewRequest $request,
+        TarfinCardTransaction $tarfinCardTransaction,
+    ): TarfinCardTransactionResource {
         return new TarfinCardTransactionResource($tarfinCardTransaction);
     }
 }
