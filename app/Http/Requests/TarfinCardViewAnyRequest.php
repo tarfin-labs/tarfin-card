@@ -15,9 +15,9 @@ class TarfinCardViewAnyRequest extends FormRequest
     public function authorize(): bool
     {
         return $this->user()
-            ->can(
-                abilities: 'view-any',
-                arguments: TarfinCard::class
-            );
+                    ->can(
+                        abilities: 'view-any',
+                        arguments: TarfinCard::class
+                    );
     }
 }
