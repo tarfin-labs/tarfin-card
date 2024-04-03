@@ -15,6 +15,7 @@ class TarfinCardResource extends JsonResource
      */
     public function toArray($request): array
     {
+        /** @var \App\Models\TarfinCard $this */
         return [
             'id'              => $this->id,
             'number'          => $this->number,
