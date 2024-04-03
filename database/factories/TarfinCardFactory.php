@@ -7,7 +7,6 @@ namespace Database\Factories;
 use App\Models\TarfinCard;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
 class TarfinCardFactory extends Factory
 {
@@ -28,12 +27,14 @@ class TarfinCardFactory extends Factory
             'number'          => fake()->creditCardNumber(),
             'type'            => fake()->creditCardType(),
             'expiration_date' => fake()->dateTimeBetween(startDate: '+1 month', endDate: '+3 year'),
-            'disabled_at'     => fake()->boolean() ? Carbon::now() : null,
+            'disabled_at'     => fake()->boolean() ? now() : null,
         ];
     }
 
     /**
-     * Set customer for Tarfin Card.
+     * Set the user id for the Tarfin Card.
+     *
+     * @param User $customer The customer instance for which the factory is being created.
      */
     public function forCustomer(User $customer): Factory
     {
@@ -43,7 +44,8 @@ class TarfinCardFactory extends Factory
     }
 
     /**
-     * Indicate that the Tarfin Card is active.
+     * Set the Tarfin Card as active.
+     *
      */
     public function active(): Factory
     {
@@ -53,17 +55,19 @@ class TarfinCardFactory extends Factory
     }
 
     /**
-     * Indicate that the Tarfin Card is deactive.
+     * Deactivate the Tarfin Card by setting the disabled_at attribute to a random date in the past.
+     *
      */
     public function deactive(): Factory
     {
         return $this->state(fn (): array => [
-            'disabled_at' => Carbon::now()->subDays(fake()->numberBetween(1, 10)),
+            'disabled_at' => now()->subDays(fake()->numberBetween(int1:1, int2: 10)),
         ]);
     }
 
     /**
-     * Indicate that the Tarfin Card is expired.
+     * Set the disabled_at attribute to a fake dateTime value, marking the entity as expired.
+     *
      */
     public function expired(): Factory
     {
