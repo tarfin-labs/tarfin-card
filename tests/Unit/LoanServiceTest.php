@@ -102,7 +102,7 @@ class LoanServiceTest extends TestCase
             'processed_at'       => Carbon::parse('2022-01-20'),
         ]);
 
-        // Asserting First Scheduled Repayment is Repaid
+        // Asserting the First Scheduled Repayment is Repaid
         $this->assertDatabaseHas(ScheduledRepayment::class, [
             'loan_id'            => $loan->id,
             'amount'             => 1666,
@@ -146,7 +146,7 @@ class LoanServiceTest extends TestCase
             Carbon::parse('2022-01-20'),
         );
 
-        // First two scheduled repayments are already repaid and the last one is due
+        // The First two scheduled repayments are already repaid and the last one is due
         $loan->update(['outstanding_amount' => 5000 - (1666 * 2)]);
 
         foreach ($loan->scheduledRepayments->take(2) as $scheduledRepayment) {
@@ -239,7 +239,7 @@ class LoanServiceTest extends TestCase
             'status'             => PaymentStatus::REPAID,
         ]);
 
-        // Asserting Second Scheduled Repayment is Partial
+        // Asserting the Second Scheduled Repayment is Partial
         $this->assertDatabaseHas(ScheduledRepayment::class, [
             'loan_id'            => $loan->id,
             'amount'             => 1666,
