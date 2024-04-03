@@ -15,7 +15,8 @@ class TarfinCardCreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('create', TarfinCard::class);
+        return $this->user()
+            ->can(abilities: 'create', arguments: TarfinCard::class);
     }
 
     /**
@@ -25,7 +26,16 @@ class TarfinCardCreateRequest extends FormRequest
     {
         return [
             'type' => [
-                'required', 'string', Rule::in(['Visa', 'MasterCard', 'American Express', 'Discover Card', 'Visa Retired', 'JCB']),
+                'required',
+                'string',
+                Rule::in(values: [
+                    'Visa',
+                    'MasterCard',
+                    'American Express',
+                    'Discover Card',
+                    'Visa Retired',
+                    'JCB'
+                ]),
             ],
         ];
     }
