@@ -25,8 +25,8 @@ class TarfinCardTransactionFactory extends Factory
     {
         return [
             'tarfin_card_id' => TarfinCard::factory(),
-            'amount'         => $this->faker->numberBetween(100, 999) * 10,
-            'currency_code'  => $this->faker->randomElement(CurrencyType::cases()),
+            'amount'         => fake()->numberBetween(100, 999) * 10,
+            'currency_code'  => fake()->randomElement(CurrencyType::cases()),
         ];
     }
 }

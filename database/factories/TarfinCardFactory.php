@@ -25,10 +25,10 @@ class TarfinCardFactory extends Factory
     {
         return [
             'user_id'         => User::factory(),
-            'number'          => $this->faker->creditCardNumber(),
-            'type'            => $this->faker->creditCardType(),
-            'expiration_date' => $this->faker->dateTimeBetween('+1 month', '+3 year'),
-            'disabled_at'     => $this->faker->boolean() ? Carbon::now() : null,
+            'number'          => fake()->creditCardNumber(),
+            'type'            => fake()->creditCardType(),
+            'expiration_date' => fake()->dateTimeBetween(startDate: '+1 month', endDate: '+3 year'),
+            'disabled_at'     => fake()->boolean() ? Carbon::now() : null,
         ];
     }
 
@@ -58,7 +58,7 @@ class TarfinCardFactory extends Factory
     public function deactive(): Factory
     {
         return $this->state(fn (): array => [
-            'disabled_at' => Carbon::now()->subDays($this->faker->numberBetween(1, 10)),
+            'disabled_at' => Carbon::now()->subDays(fake()->numberBetween(1, 10)),
         ]);
     }
 
@@ -68,7 +68,7 @@ class TarfinCardFactory extends Factory
     public function expired(): Factory
     {
         return $this->state(fn () => [
-            'disabled_at' => $this->faker->dateTime(),
+            'disabled_at' => fake()->dateTime(),
         ]);
     }
 }
