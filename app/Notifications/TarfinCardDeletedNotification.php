@@ -14,38 +14,32 @@ class TarfinCardDeletedNotification extends Notification
 {
     use Queueable;
 
-    public TarfinCard $tarfinCard;
-
     /**
      * Create a new notification instance.
      *
-     * @return void
      */
-    public function __construct(TarfinCard $tarfinCard)
-    {
-        $this->tarfinCard = $tarfinCard;
-    }
+    public function __construct(
+        public TarfinCard $tarfinCard
+    ) {}
 
     /**
      * Get the notification's delivery channels.
-     *
-     * @param mixed $notifiable
      */
-    public function via($notifiable): array
+    public function via(mixed $notifiable): array
     {
         return ['mail'];
     }
 
     /**
      * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
      */
-    public function toMail($notifiable): Response
+    public function toMail(mixed $notifiable): Response
     {
-        return Http::post('http://you-should-mock-this-mail-service', [
-            'tarfin_card_id' => $this->tarfinCard->id,
-            'message'        => "Your Tarfin Card #{$this->tarfinCard->number} is deleted.",
-        ]);
+        return Http::post(
+            url: 'http://you-should-mock-this-mail-service',
+            data: [
+                'tarfin_card_id' => $this->tarfinCard->id,
+                'message'        => "Your Tarfin Card #{$this->tarfinCard->number} is deleted.",
+            ]);
     }
 }
