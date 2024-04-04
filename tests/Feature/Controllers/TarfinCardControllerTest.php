@@ -59,7 +59,7 @@ class TarfinCardControllerTest extends TestCase
     /**
      * @test
      */
-    public function a_customer_can_not_see_a_tarfin_card_of_another_customer(): void
+    public function a_customer_can_not_see_a_tarfin_card_of_other_customer(): void
     {
         // 1. Arrange
         // TODO:
