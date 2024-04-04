@@ -2,24 +2,39 @@ name: Tests
 
 on: [ 'push', 'pull_request' ]
 
+permissions:
+  contents: read
+
 jobs:
   tests:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
 
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.2, 8.3]
+
+    name: PHP ${{ matrix.php }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          coverage: pcov
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction --no-scripts
+        run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Directory Permissions
-        run: chmod -R 777 storage bootstrap/cache
+      - name: Copy environment file
+        run: cp .env.example .env
 
-      - name: Generate key
+      - name: Generate an app key
         run: php artisan key:generate
 
-      - name: Tests
+      - name: Execute tests
         run: php artisan test
