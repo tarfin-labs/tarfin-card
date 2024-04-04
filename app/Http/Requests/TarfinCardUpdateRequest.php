@@ -14,10 +14,10 @@ class TarfinCardUpdateRequest extends FormRequest
     public function authorize(): bool
     {
         return $this->user()
-                    ->can(
-                        abilities: 'update',
-                        arguments: $this->route(param: 'tarfin_card')
-                    );
+            ->can(
+                abilities: 'update',
+                arguments: $this->route(param: 'tarfin_card')
+            );
     }
 
     /**
@@ -28,7 +28,7 @@ class TarfinCardUpdateRequest extends FormRequest
         return [
             'is_active' => [
                 'required',
-                'boolean'
+                'boolean',
             ],
         ];
     }

@@ -14,9 +14,9 @@ class TarfinCardTransactionViewRequest extends FormRequest
     public function authorize(): bool
     {
         return $this->user()
-                    ->can(
-                        abilities: 'view',
-                        arguments: $this->route(param: 'tarfin_card_transaction')
-                    );
+            ->can(
+                abilities: 'view',
+                arguments: $this->route(param: 'tarfin_card_transaction')
+            );
     }
 }

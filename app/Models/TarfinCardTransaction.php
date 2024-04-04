@@ -10,9 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @mixin IdeHelperTarfinCardTransaction
- */
 class TarfinCardTransaction extends Model
 {
     use HasFactory;
@@ -20,22 +17,35 @@ class TarfinCardTransaction extends Model
 
     // region Attributes
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'tarfin_card_id',
         'amount',
         'currency_code',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'tarfin_card_id' => 'integer',
-        'amount'         => 'integer',
-        'currency_code'  => CurrencyType::class,
+        'amount' => 'integer',
+        'currency_code' => CurrencyType::class,
     ];
 
     // endregion
 
     // region Relations
 
+    /**
+     * A Tarfin Card Transaction belongs to a Tarfin Card.
+     */
     public function tarfinCard(): BelongsTo
     {
         return $this->belongsTo(related: TarfinCard::class);

@@ -16,11 +16,11 @@ class TarfinCardDeletedNotification extends Notification
 
     /**
      * Create a new notification instance.
-     *
      */
     public function __construct(
         public TarfinCard $tarfinCard
-    ) {}
+    ) {
+    }
 
     /**
      * Get the notification's delivery channels.
@@ -39,7 +39,7 @@ class TarfinCardDeletedNotification extends Notification
             url: 'http://you-should-mock-this-mail-service',
             data: [
                 'tarfin_card_id' => $this->tarfinCard->id,
-                'message'        => "Your Tarfin Card #{$this->tarfinCard->number} is deleted.",
+                'message' => "Your Tarfin Card #{$this->tarfinCard->number} is deleted.",
             ]);
     }
 }

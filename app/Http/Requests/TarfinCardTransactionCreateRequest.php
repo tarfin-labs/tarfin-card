@@ -17,10 +17,10 @@ class TarfinCardTransactionCreateRequest extends FormRequest
     public function authorize(): bool
     {
         return $this->user()
-                    ->can(
-                        abilities: 'create',
-                        arguments: [TarfinCardTransaction::class, $this->route(param: 'tarfin_card')]
-                    );
+            ->can(
+                abilities: 'create',
+                arguments: [TarfinCardTransaction::class, $this->route(param: 'tarfin_card')]
+            );
     }
 
     /**
@@ -29,14 +29,14 @@ class TarfinCardTransactionCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'        => [
+            'amount' => [
                 'required',
-                'integer'
+                'integer',
             ],
             'currency_code' => [
                 'required',
                 'string',
-                new Enum(type: CurrencyType::class)
+                new Enum(type: CurrencyType::class),
             ],
         ];
     }

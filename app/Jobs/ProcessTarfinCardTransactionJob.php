@@ -23,7 +23,8 @@ class ProcessTarfinCardTransactionJob implements ShouldQueue
      */
     public function __construct(
         protected int $tarfinCardTransaction,
-    ) {}
+    ) {
+    }
 
     /**
      * Execute the job.

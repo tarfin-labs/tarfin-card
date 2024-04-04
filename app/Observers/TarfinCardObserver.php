@@ -10,13 +10,6 @@ use App\Notifications\TarfinCardDeletedNotification;
 class TarfinCardObserver
 {
     /**
-     * Handle events after all transactions are committed.
-     *
-     * @var bool
-     */
-    public $afterCommit = true;
-
-    /**
      * Handle the TarfinCard "deleted" event.
      */
     public function deleted(TarfinCard $tarfinCard): void

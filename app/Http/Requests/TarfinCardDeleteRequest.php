@@ -14,9 +14,9 @@ class TarfinCardDeleteRequest extends FormRequest
     public function authorize(): bool
     {
         return $this->user()
-                    ->can(
-                        abilities: 'delete',
-                        arguments: $this->route(param: 'tarfin_card')
-                    );
+            ->can(
+                abilities: 'delete',
+                arguments: $this->route(param: 'tarfin_card')
+            );
     }
 }

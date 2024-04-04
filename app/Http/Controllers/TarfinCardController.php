@@ -12,7 +12,6 @@ use App\Http\Requests\TarfinCardViewRequest;
 use App\Http\Resources\TarfinCardResource;
 use App\Models\TarfinCard;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Carbon;
 
 class TarfinCardController extends Controller
 {
@@ -22,9 +21,9 @@ class TarfinCardController extends Controller
     public function index(TarfinCardViewAnyRequest $request): AnonymousResourceCollection
     {
         $tarfinCards = $request->user()
-                               ->tarfinCards()
-                               ->active()
-                               ->get();
+            ->tarfinCards()
+            ->active()
+            ->get();
 
         return TarfinCardResource::collection(resource: $tarfinCards);
     }
@@ -37,8 +36,8 @@ class TarfinCardController extends Controller
         $tarfinCard = $request->user()
             ->tarfinCards()
             ->create([
-                'type'            => $request->string(key: 'type')->trim(),
-                'number'          => mt_rand(min: 10000000, max: 99999999) . mt_rand(min: 00000000, max: 99999999),
+                'type' => $request->string(key: 'type')->trim(),
+                'number' => mt_rand(min: 10000000, max: 99999999).mt_rand(min: 00000000, max: 99999999),
                 'expiration_date' => now()->addYear(),
             ]);
 

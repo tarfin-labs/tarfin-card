@@ -2,26 +2,24 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
+use App\Models\TarfinCard;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTarfinCardsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('tarfin_cards', function (Blueprint $table) {
+        Schema::create(table: 'tarfin_card_transactions', callback: function (Blueprint $table): void {
             $table->id();
 
-            $table->foreignIdFor(User::class)->constrained();
-            $table->unsignedBigInteger('number');
-            $table->string('type');
-            $table->dateTime('expiration_date');
-            $table->dateTime('disabled_at')->nullable();
+            $table->foreignIdFor(model: TarfinCard::class)->constrained();
+            $table->unsignedBigInteger(column: 'amount');
+            $table->string(column: 'currency_code');
 
             $table->timestamps();
             $table->softDeletes();
@@ -33,6 +31,6 @@ class CreateTarfinCardsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarfin_cards');
+        Schema::dropIfExists(table: 'tarfin_card_transactions');
     }
-}
+};

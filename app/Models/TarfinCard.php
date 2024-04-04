@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Observers\TarfinCardObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
-/**
- * @mixin IdeHelperTarfinCard
- */
+#[ObservedBy([TarfinCardObserver::class])]
 class TarfinCard extends Model
 {
     use HasFactory;
@@ -21,6 +23,11 @@ class TarfinCard extends Model
 
     // region Attributes
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'user_id',
         'number',
@@ -29,12 +36,17 @@ class TarfinCard extends Model
         'disabled_at',
     ];
 
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
     protected $casts = [
-        'user_id'         => 'integer',
-        'number'          => 'integer',
-        'type'            => 'string',
+        'user_id' => 'integer',
+        'number' => 'integer',
+        'type' => 'string',
         'expiration_date' => 'datetime',
-        'disabled_at'     => 'datetime',
+        'disabled_at' => 'datetime',
     ];
 
     // endregion
@@ -42,22 +54,30 @@ class TarfinCard extends Model
     // region Accessors
 
     /**
-     * Convert disabled_at in boolean attribute.
+     * Return if the Tarfin Card is active.
      */
-    public function getIsActiveAttribute(): bool
+    public function isActive(): Attribute
     {
-        return is_null($this->disabled_at);
+        return Attribute::make(
+            get: static fn (?Carbon $value): bool => is_null($value),
+        );
     }
 
     // endregion
 
     // region Relations
 
+    /**
+     * A Tarfin Card belongs to a User.
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(related: User::class);
     }
 
+    /**
+     * A Tarfin Card has many Tarfin Card Transactions.
+     */
     public function transactions(): HasMany
     {
         return $this->hasMany(related: TarfinCardTransaction::class);
@@ -68,11 +88,11 @@ class TarfinCard extends Model
     // region Scopes
 
     /**
-     * Scope active Tarfin Cards.
+     * Scope the query to only include active records.
      */
-    public function scopeActive(Builder $query): Builder
+    public function scopeActive(Builder $query): void
     {
-        return $query->whereNull(columns: 'disabled_at');
+        $query->whereNull(columns: 'disabled_at');
     }
 
     // endregion
