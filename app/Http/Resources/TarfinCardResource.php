@@ -11,8 +11,6 @@ class TarfinCardResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
      */
     public function toArray(Request $request): array
     {
