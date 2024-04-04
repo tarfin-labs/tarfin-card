@@ -3,25 +3,21 @@
     "type": "project",
     "description": "Tarfin Take-Home Coding Challenge",
     "keywords": ["tarfin", "tarfin-card", "take-home"],
-    "license": "MIT",
+    "license": "proprietary",
     "require": {
-        "php": "^8.1",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^9.2",
-        "laravel/passport": "^10.4",
-        "laravel/sanctum": "^2.14.1",
-        "laravel/tinker": "^2.7"
+        "php": "^8.2",
+        "laravel/framework": "^11.0",
+        "laravel/passport": "^v12.0",
+        "laravel/tinker": "^2.9"
     },
     "require-dev": {
-        "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
-        "barryvdh/laravel-ide-helper": "^2.12.3",
-        "fakerphp/faker": "^1.9.1",
-        "friendsofphp/php-cs-fixer": "^3.8",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.0",
+        "phpunit/phpunit": "^11.0",
+        "spatie/laravel-ignition": "^2.4"
     },
     "autoload": {
         "psr-4": {
@@ -41,16 +37,16 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi",
-            "@php artisan ide-helper:run"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ],
-        "lint": "php-cs-fixer fix -v"
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ]
     },
     "extra": {
         "laravel": {
@@ -60,8 +56,12 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
