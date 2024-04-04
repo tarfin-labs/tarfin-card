@@ -15,13 +15,13 @@ class TarfinCardResource extends JsonResource
      */
     public function toArray($request): array
     {
-        /** @var \App\Models\TarfinCard $this */
+        /* @var \App\Models\TarfinCard $this */
         return [
-            'id' => $this->id,
-            'number' => $this->number,
-            'type' => $this->type,
+            'id'              => $this->id,
+            'number'          => $this->number,
+            'type'            => $this->type,
             'expiration_date' => $this->expiration_date,
-            'is_active' => $this->is_active,
+            'is_active'       => $this->is_active,
         ];
     }
 }

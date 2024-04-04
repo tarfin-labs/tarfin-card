@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\TarfinCard;
 use App\Models\User;
+use App\Models\TarfinCard;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TarfinCardPolicy

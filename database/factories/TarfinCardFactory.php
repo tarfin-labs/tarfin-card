@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\TarfinCard;
 use App\Models\User;
+use App\Models\TarfinCard;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TarfinCardFactory extends Factory
@@ -23,11 +23,11 @@ class TarfinCardFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'number' => fake()->creditCardNumber(),
-            'type' => fake()->creditCardType(),
+            'user_id'         => User::factory(),
+            'number'          => fake()->creditCardNumber(),
+            'type'            => fake()->creditCardType(),
             'expiration_date' => fake()->dateTimeBetween(startDate: '+1 month', endDate: '+3 year'),
-            'disabled_at' => fake()->boolean() ? now() : null,
+            'disabled_at'     => fake()->boolean() ? now() : null,
         ];
     }
 

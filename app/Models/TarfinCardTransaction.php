@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\CurrencyType;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TarfinCardTransaction extends Model
 {
@@ -35,8 +35,8 @@ class TarfinCardTransaction extends Model
      */
     protected $casts = [
         'tarfin_card_id' => 'integer',
-        'amount' => 'integer',
-        'currency_code' => CurrencyType::class,
+        'amount'         => 'integer',
+        'currency_code'  => CurrencyType::class,
     ];
 
     // endregion

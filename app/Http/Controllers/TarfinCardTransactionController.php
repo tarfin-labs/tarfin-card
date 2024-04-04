@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TarfinCardTransactionCreateRequest;
-use App\Http\Requests\TarfinCardTransactionViewAnyRequest;
-use App\Http\Requests\TarfinCardTransactionViewRequest;
-use App\Http\Resources\TarfinCardTransactionResource;
-use App\Jobs\ProcessTarfinCardTransactionJob;
 use App\Models\TarfinCard;
 use App\Models\TarfinCardTransaction;
+use App\Jobs\ProcessTarfinCardTransactionJob;
+use App\Http\Resources\TarfinCardTransactionResource;
+use App\Http\Requests\TarfinCardTransactionViewRequest;
+use App\Http\Requests\TarfinCardTransactionCreateRequest;
+use App\Http\Requests\TarfinCardTransactionViewAnyRequest;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TarfinCardTransactionController extends Controller

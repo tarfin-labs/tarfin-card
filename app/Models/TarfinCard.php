@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Observers\TarfinCardObserver;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use App\Observers\TarfinCardObserver;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 #[ObservedBy([TarfinCardObserver::class])]
 class TarfinCard extends Model
@@ -42,11 +42,11 @@ class TarfinCard extends Model
      * @return array<string, string>
      */
     protected $casts = [
-        'user_id' => 'integer',
-        'number' => 'integer',
-        'type' => 'string',
+        'user_id'         => 'integer',
+        'number'          => 'integer',
+        'type'            => 'string',
         'expiration_date' => 'datetime',
-        'disabled_at' => 'datetime',
+        'disabled_at'     => 'datetime',
     ];
 
     // endregion

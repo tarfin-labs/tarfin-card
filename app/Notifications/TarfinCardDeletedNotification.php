@@ -7,8 +7,8 @@ namespace App\Notifications;
 use App\Models\TarfinCard;
 use Illuminate\Bus\Queueable;
 use Illuminate\Http\Client\Response;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Notifications\Notification;
 
 class TarfinCardDeletedNotification extends Notification
 {
@@ -39,7 +39,7 @@ class TarfinCardDeletedNotification extends Notification
             url: 'http://you-should-mock-this-mail-service',
             data: [
                 'tarfin_card_id' => $this->tarfinCard->id,
-                'message' => "Your Tarfin Card #{$this->tarfinCard->number} is deleted.",
+                'message'        => "Your Tarfin Card #{$this->tarfinCard->number} is deleted.",
             ]);
     }
 }

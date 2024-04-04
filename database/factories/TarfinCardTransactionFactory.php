@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Enums\CurrencyType;
 use App\Models\TarfinCard;
+use App\Enums\CurrencyType;
 use App\Models\TarfinCardTransaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,8 +25,8 @@ class TarfinCardTransactionFactory extends Factory
     {
         return [
             'tarfin_card_id' => TarfinCard::factory(),
-            'amount' => fake()->numberBetween(int1: 100, int2: 999) * 10,
-            'currency_code' => fake()->randomElement(CurrencyType::cases()),
+            'amount'         => fake()->numberBetween(int1: 100, int2: 999) * 10,
+            'currency_code'  => fake()->randomElement(CurrencyType::cases()),
         ];
     }
 }

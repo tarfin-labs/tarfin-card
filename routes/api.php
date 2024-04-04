@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarfinCardController;
 use App\Http\Controllers\TarfinCardTransactionController;
-use Illuminate\Support\Facades\Route;
 
 Route::apiResource(
     name: 'tarfin-cards',

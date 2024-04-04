@@ -6,8 +6,8 @@ namespace App\Http\Requests;
 
 use App\Enums\CurrencyType;
 use App\Models\TarfinCardTransaction;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Foundation\Http\FormRequest;
 
 class TarfinCardTransactionCreateRequest extends FormRequest
 {
