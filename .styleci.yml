@@ -1,5 +1,0 @@
-preset: laravel
-enabled:
-  - align_double_arrow
-disabled:
-  - no_unused_imports
