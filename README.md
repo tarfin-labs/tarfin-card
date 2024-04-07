@@ -105,7 +105,7 @@ geçmesi için gerekli kodu yazmalısın.
 
 ### Geliştirme Ortamının Hazırlanması
 
-Bu bir **Laravel 9** projesidir ve **PHP 8.1+** gerektirir.
+Bu bir **Laravel 11** projesidir ve **PHP 8.2 veya 8.3+** gerektirir.
 
 1. Kişisel GitHub hesabında `tarfin-card` isimli `private` bir `repo` oluştur.
 2. GitHub hesabındaki `tarfin-card` `repo`sunu açtığında en alttaki `Import code` düğmesini göreceksin.   
