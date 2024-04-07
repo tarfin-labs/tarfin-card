@@ -94,12 +94,12 @@ class LoanServiceTest extends TestCase
             amount: 5000,
             currencyCode: CurrencyType::TRY,
             terms: 3,
-            processedAt: Carbon::parse(time: '2024-01-20'),
+            processedAt: Carbon::parse(time: '2030-01-20'),
         );
 
         $receivedRepayment = 1666;
         $currencyCode      = CurrencyType::TRY;
-        $receivedAt        = Carbon::parse(time: '2024-02-20');
+        $receivedAt        = Carbon::parse(time: '2030-01-20');
 
         // 2. Act
         $loan = LoanFacade::repayLoan(
@@ -121,7 +121,7 @@ class LoanServiceTest extends TestCase
                 'outstanding_amount' => 5000 - 1666,
                 'currency_code'      => $currencyCode,
                 'status'             => PaymentStatus::DUE,
-                'processed_at'       => Carbon::parse(time: '2024-01-20'),
+                'processed_at'       => Carbon::parse(time: '2030-01-20'),
             ]);
 
         // Asserting the first `ScheduledRepayment` is repaid
@@ -132,7 +132,7 @@ class LoanServiceTest extends TestCase
                 'amount'             => 1666,
                 'outstanding_amount' => 0,
                 'currency_code'      => $currencyCode,
-                'due_date'           => Carbon::parse(time: '2024-02-20'),
+                'due_date'           => Carbon::parse(time: '2030-02-20'),
                 'status'             => PaymentStatus::REPAID,
             ]);
 
@@ -141,14 +141,14 @@ class LoanServiceTest extends TestCase
             table: ScheduledRepayment::class,
             data: [
                 'status'   => PaymentStatus::DUE,
-                'due_date' => Carbon::parse(time: '2024-03-20'),
+                'due_date' => Carbon::parse(time: '2030-03-20'),
             ]);
 
         $this->assertDatabaseHas(
             table: ScheduledRepayment::class,
             data: [
                 'status'   => PaymentStatus::DUE,
-                'due_date' => Carbon::parse(time: '2024-04-20'),
+                'due_date' => Carbon::parse(time: '2030-04-20'),
             ]);
 
         // Asserting `ReceivedRepayment` values
