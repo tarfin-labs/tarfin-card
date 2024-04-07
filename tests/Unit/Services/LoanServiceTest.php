@@ -237,6 +237,38 @@ class LoanServiceTest extends TestCase
     }
 
     #[Test]
+    public function can_pay_multiple_scheduled_payments_on_the_same_day(): void
+    {
+        // 1. Arrange
+        $loan = LoanFacade::createLoan(
+            customer: User::factory()->create(),
+            amount: 6000,
+            currencyCode: CurrencyType::TRY,
+            terms: 3,
+            processedAt: now(),
+        );
+
+        // 2. Act
+        $loan->scheduledRepayments()->each(callback: function (ScheduledRepayment $scheduledRepayment) use ($loan): void {
+            LoanFacade::repayLoan(
+                loan: $loan,
+                amount: $scheduledRepayment->amount,
+                currencyCode: $loan->currency_code,
+                receivedAt: now()
+            );
+        });
+
+        // 3. Assert
+        $this->assertEquals(expected: PaymentStatus::REPAID, actual: $loan->status);
+
+        $this->assertEquals(expected: 3, actual: $loan->receivedRepayments()->count());
+
+        $loan->scheduledRepayments()->each(callback: function (ScheduledRepayment $scheduledRepayment): void {
+            $this->assertEquals(expected: PaymentStatus::REPAID, actual: $scheduledRepayment->status);
+        });
+    }
+
+    #[Test]
     public function can_pay_multiple_scheduled_payment(): void
     {
         // 1. Arrange
