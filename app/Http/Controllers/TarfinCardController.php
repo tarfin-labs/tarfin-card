@@ -16,7 +16,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class TarfinCardController extends Controller
 {
     /**
-     * Retrieve a collection of Tarfin cards for the authenticated user.
+     * List all active Tarfin Cards.
      */
     public function index(TarfinCardViewAnyRequest $request): AnonymousResourceCollection
     {
