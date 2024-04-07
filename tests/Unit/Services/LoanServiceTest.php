@@ -29,10 +29,11 @@ class LoanServiceTest extends TestCase
         int $terms,
         int $amount,
         CurrencyType $currencyCode,
-        Carbon $processedAt,
         array $scheduledRepaymentAmounts
     ): void {
         // 1. Arrange
+        $now = Carbon::parse(time: '2030-01-02');
+
         $customer = User::factory()->create();
 
         // 2. Act
@@ -41,7 +42,7 @@ class LoanServiceTest extends TestCase
             amount: $amount,
             currencyCode: $currencyCode,
             terms: $terms,
-            processedAt: $processedAt
+            processedAt: $now
         );
 
         // 3. Assert
@@ -54,7 +55,7 @@ class LoanServiceTest extends TestCase
                 'terms'              => $terms,
                 'outstanding_amount' => $amount,
                 'currency_code'      => $currencyCode,
-                'processed_at'       => $processedAt,
+                'processed_at'       => $now,
                 'status'             => PaymentStatus::DUE,
             ]);
 
@@ -71,7 +72,7 @@ class LoanServiceTest extends TestCase
                     'amount'             => $scheduledRepaymentAmounts[$index],
                     'outstanding_amount' => $scheduledRepaymentAmounts[$index],
                     'currency_code'      => $currencyCode,
-                    'due_date'           => $processedAt->clone()->addMonths(value: $index + 1),
+                    'due_date'           => $now->clone()->addMonths(value: $index + 1),
                     'status'             => PaymentStatus::DUE,
                 ]);
         }
