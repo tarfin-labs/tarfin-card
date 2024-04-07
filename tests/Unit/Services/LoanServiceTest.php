@@ -247,13 +247,13 @@ class LoanServiceTest extends TestCase
             amount: 5000,
             currencyCode: CurrencyType::TRY,
             terms: 3,
-            processedAt: Carbon::parse(time: '2024-01-20'),
+            processedAt: Carbon::parse(time: '2030-01-20'),
         );
 
         // Paying more than the first `ScheduledRepayment` amount
         $receivedRepayment = 2000;
         $currencyCode      = CurrencyType::TRY;
-        $receivedAt        = Carbon::parse(time: '2024-02-20');
+        $receivedAt        = Carbon::parse(time: '2030-02-20');
 
         // 2. Act
         $loan = LoanFacade::repayLoan(
@@ -274,7 +274,7 @@ class LoanServiceTest extends TestCase
                 'outstanding_amount' => 5000 - 2000,
                 'currency_code'      => $currencyCode,
                 'status'             => PaymentStatus::DUE,
-                'processed_at'       => Carbon::parse(time: '2024-01-20'),
+                'processed_at'       => Carbon::parse(time: '2030-01-20'),
             ]);
 
         // Asserting the first `ScheduledRepayment` is repaid
@@ -285,7 +285,7 @@ class LoanServiceTest extends TestCase
                 'amount'             => 1666,
                 'outstanding_amount' => 0,
                 'currency_code'      => $currencyCode,
-                'due_date'           => Carbon::parse(time: '2024-02-20'),
+                'due_date'           => Carbon::parse(time: '2030-02-20'),
                 'status'             => PaymentStatus::REPAID,
             ]);
 
@@ -297,7 +297,7 @@ class LoanServiceTest extends TestCase
                 'amount'             => 1666,
                 'outstanding_amount' => 1332, // 1666 - (2000 - 1666)
                 'currency_code'      => $currencyCode,
-                'due_date'           => Carbon::parse(time: '2024-03-20'),
+                'due_date'           => Carbon::parse(time: '2030-03-20'),
                 'status'             => PaymentStatus::PARTIAL,
             ]);
 
@@ -308,7 +308,7 @@ class LoanServiceTest extends TestCase
                 'loan_id'       => $loan->id,
                 'amount'        => 2000,
                 'currency_code' => $currencyCode,
-                'received_at'   => Carbon::parse(time: '2024-02-20'),
+                'received_at'   => Carbon::parse(time: '2030-02-20'),
             ]);
     }
 
