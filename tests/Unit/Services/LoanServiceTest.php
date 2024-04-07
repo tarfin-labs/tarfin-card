@@ -13,6 +13,7 @@ use App\Enums\PaymentStatus;
 use Illuminate\Support\Carbon;
 use App\Models\ReceivedRepayment;
 use App\Models\ScheduledRepayment;
+use Illuminate\Support\Collection;
 use PHPUnit\Framework\Attributes\Test;
 use App\Exceptions\AlreadyRepaidException;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -249,19 +250,17 @@ class LoanServiceTest extends TestCase
         );
 
         // 2. Act
-        $loan->scheduledRepayments()->each(callback: function (ScheduledRepayment $scheduledRepayment) use ($loan): void {
-            LoanFacade::repayLoan(
-                loan: $loan,
-                amount: $scheduledRepayment->amount,
-                currencyCode: $loan->currency_code,
-                receivedAt: now()
-            );
-        });
+        Collection::times(number: 6, callback: fn () => LoanFacade::repayLoan(
+            loan: $loan,
+            amount: 1000,
+            currencyCode: $loan->currency_code,
+            receivedAt: now()
+        ));
 
         // 3. Assert
         $this->assertEquals(expected: PaymentStatus::REPAID, actual: $loan->status);
 
-        $this->assertEquals(expected: 3, actual: $loan->receivedRepayments()->count());
+        $this->assertEquals(expected: 6, actual: $loan->receivedRepayments()->count());
 
         $loan->scheduledRepayments()->each(callback: function (ScheduledRepayment $scheduledRepayment): void {
             $this->assertEquals(expected: PaymentStatus::REPAID, actual: $scheduledRepayment->status);
