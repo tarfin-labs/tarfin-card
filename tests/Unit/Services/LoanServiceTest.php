@@ -323,7 +323,7 @@ class LoanServiceTest extends TestCase
             amount: 5000,
             currencyCode: CurrencyType::TRY,
             terms: 3,
-            processedAt: Carbon::parse(time: '2024-01-20'),
+            processedAt: now(),
         );
 
         // 3. Assert
