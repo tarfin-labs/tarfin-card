@@ -173,7 +173,7 @@ class LoanServiceTest extends TestCase
             amount: 5000,
             currencyCode: CurrencyType::TRY,
             terms: 3,
-            processedAt: Carbon::parse(time: '2024-01-20'),
+            processedAt: Carbon::parse(time: '2030-01-20'),
         );
 
         // The first two `ScheduledRepayments` are already repaid and the last one is due
@@ -188,7 +188,7 @@ class LoanServiceTest extends TestCase
 
         $receivedRepayment = 1668;
         $currencyCode      = CurrencyType::TRY;
-        $receivedAt        = Carbon::parse(time: '2024-04-20');
+        $receivedAt        = Carbon::parse(time: '2030-04-20');
 
         // 2. Act
         // Repaying the last one
@@ -210,7 +210,7 @@ class LoanServiceTest extends TestCase
                 'outstanding_amount' => 0,
                 'currency_code'      => $currencyCode,
                 'status'             => PaymentStatus::REPAID,
-                'processed_at'       => Carbon::parse(time: '2024-01-20'),
+                'processed_at'       => Carbon::parse(time: '2030-01-20'),
             ]);
 
         // Asserting Last `ScheduledRepayment` is repaid
@@ -221,7 +221,7 @@ class LoanServiceTest extends TestCase
                 'amount'             => 1668,
                 'outstanding_amount' => 0,
                 'currency_code'      => $currencyCode,
-                'due_date'           => Carbon::parse(time: '2024-04-20'),
+                'due_date'           => Carbon::parse(time: '2030-04-20'),
                 'status'             => PaymentStatus::REPAID,
             ]);
 
@@ -232,7 +232,7 @@ class LoanServiceTest extends TestCase
                 'loan_id'       => $loan->id,
                 'amount'        => 1668,
                 'currency_code' => $currencyCode,
-                'received_at'   => Carbon::parse(time: '2024-04-20'),
+                'received_at'   => Carbon::parse(time: '2030-04-20'),
             ]);
     }
 
