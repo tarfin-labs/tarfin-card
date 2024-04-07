@@ -14,9 +14,10 @@ Route::apiResource(
 Route::apiResource(
     name: 'tarfin-cards.tarfin-card-transactions',
     controller: TarfinCardTransactionController::class
-)->only(methods: [
-    'index',
-    'show',
-    'store',
-])->shallow()
-    ->middleware(middleware: 'auth:api');
+)->shallow()
+    ->middleware(middleware: 'auth:api')
+    ->only(methods: [
+        'index',
+        'show',
+        'store',
+    ]);
