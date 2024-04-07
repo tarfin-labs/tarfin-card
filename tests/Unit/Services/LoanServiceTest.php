@@ -345,6 +345,43 @@ class LoanServiceTest extends TestCase
     }
 
     #[Test]
+    public function should_not_incur_penalty_for_unpaid_loan_on_time(): void
+    {
+        // 1. Arrange
+        $now = Carbon::parse(time: '2030-01-20');
+        Carbon::setTestNow($now);
+
+        $customer = User::factory()->create();
+
+        $loan = LoanFacade::createLoan(
+            customer: $customer,
+            amount: 6000,
+            currencyCode: CurrencyType::TRY,
+            terms: 3,
+            processedAt: $now,
+        );
+
+        // 2. Act
+        Carbon::setTestNow($now->clone()->addMonths(value: 4));
+
+        $loan = LoanFacade::repayLoan(
+            loan: $loan,
+            amount: 6000,
+            currencyCode: $loan->currency_code,
+            receivedAt: now()
+        );
+
+        // 3. Assert
+        $this->assertEquals(expected: PaymentStatus::REPAID, actual: $loan->status);
+
+        $this->assertEquals(expected: 1, actual: $loan->receivedRepayments()->count());
+
+        $loan->scheduledRepayments()->each(callback: function (ScheduledRepayment $scheduledRepayment): void {
+            $this->assertEquals(expected: PaymentStatus::REPAID, actual: $scheduledRepayment->status);
+        });
+    }
+
+    #[Test]
     public function can_not_pay_more_than_outstanding_amount(): void
     {
         // 1. Arrange
@@ -389,43 +426,6 @@ class LoanServiceTest extends TestCase
             currencyCode: $loan->currency_code,
             receivedAt: now()
         );
-    }
-
-    #[Test]
-    public function should_not_incur_penalty_for_unpaid_loan_on_time(): void
-    {
-        // 1. Arrange
-        $now = Carbon::parse(time: '2030-01-20');
-        Carbon::setTestNow($now);
-
-        $customer = User::factory()->create();
-
-        $loan = LoanFacade::createLoan(
-            customer: $customer,
-            amount: 6000,
-            currencyCode: CurrencyType::TRY,
-            terms: 3,
-            processedAt: $now,
-        );
-
-        // 2. Act
-        Carbon::setTestNow($now->clone()->addMonths(value: 4));
-
-        $loan = LoanFacade::repayLoan(
-            loan: $loan,
-            amount: 6000,
-            currencyCode: $loan->currency_code,
-            receivedAt: now()
-        );
-
-        // 3. Assert
-        $this->assertEquals(expected: PaymentStatus::REPAID, actual: $loan->status);
-
-        $this->assertEquals(expected: 1, actual: $loan->receivedRepayments()->count());
-
-        $loan->scheduledRepayments()->each(callback: function (ScheduledRepayment $scheduledRepayment): void {
-            $this->assertEquals(expected: PaymentStatus::REPAID, actual: $scheduledRepayment->status);
-        });
     }
 
     /**
