@@ -342,10 +342,10 @@ class LoanServiceTest extends TestCase
     public function can_not_pay_a_loan_if_already_repaid(): void
     {
         // 1. Arrange
-        $loan = Loan::factory()->create([
-            'status'             => PaymentStatus::REPAID,
-            'outstanding_amount' => 0,
-        ]);
+        /** @var Loan $loan */
+        $loan = Loan::factory()
+            ->repaid()
+            ->create();
 
         // 3. Assert
         $this->expectException(exception: AlreadyRepaidException::class);
@@ -353,8 +353,8 @@ class LoanServiceTest extends TestCase
         // 2. Act
         LoanFacade::repayLoan(
             loan: $loan,
-            amount: 5001,
-            currencyCode: CurrencyType::TRY,
+            amount: 1,
+            currencyCode: $loan->currency_code,
             receivedAt: now()
         );
     }
