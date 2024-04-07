@@ -35,8 +35,7 @@ class TarfinCardTransactionCreateRequest extends FormRequest
             ],
             'currency_code' => [
                 'required',
-                'string',
-                new Enum(type: CurrencyType::class),
+                'string', new Enum(type: CurrencyType::class),
             ],
         ];
     }
