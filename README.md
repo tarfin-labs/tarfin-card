@@ -105,31 +105,43 @@ geçmesi için gerekli kodu yazmalısın.
 
 ### Geliştirme Ortamının Hazırlanması
 
-Bu bir **Laravel 11** projesidir ve **PHP 8.2 veya 8.3+** gerektirir.
+Bu bir **Laravel 11** projesidir ve **PHP 8.2 veya 8.3** gerektirir.
 
-1. Kişisel GitHub hesabında `tarfin-card` isimli `private` bir `repo` oluştur.
-2. GitHub hesabındaki `tarfin-card` `repo`sunu açtığında en alttaki `Import code` düğmesini göreceksin.   
-   Bu özelliği kullanarak `https://github.com/tarfin-labs/tarfin-card` adresindeki `repo`yu `import` et.
-3. `Private repo`'nu inceleyebilmemiz için, şu GitHub kullanıcılarını `Settings->Collaborators->Manage access->Add People` ile davet et:   
+1. Kişisel GitHub hesabında `tarfin-card` isimli `private` bir `repo` oluştur
+2. GitHub hesabındaki `tarfin-card` `repo`sunu açtığında en alttaki `Import code` düğmesini göreceksin   
+   Bu özelliği kullanarak `https://github.com/tarfin-labs/tarfin-card` adresindeki `repo`yu `import` et
+3. `Private repo`'nu inceleyebilmemiz için, şu GitHub kullanıcılarını `Settings->Collaborators->Manage access->Add People` ile davet et      
    `frkcn`, `deligoez`, `tkaratug`, `aydinfatih`, `yidemir`
-4. `.env.example` dosyasından yeni bir `.env` dosyası oluştur.    
-   `cp .env.example .env`
-5. Bir sqlite veritabanı dosyası oluştur.  
-   `touch database/database.sqlite`
-6. Composer paketlerini yükle.  
-   `composer install`
-7. Laravel için bir `application key` oluştur.  
-   `php artisan key:generate`
-8. Veritabanı `migration`'larını çalıştır.  
-   `php artisan migrate`
-9. Laravel Passport'u ayarla.  
-   `php artisan passport:install`
-10. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et.
-11. En fazla 15dk'da bir `commit`'le.
+4. `.env.example` dosyasından yeni bir `.env` dosyası oluştur
+   ```shell
+   cp .env.example .env
+    ```
+5. Bir sqlite veritabanı dosyası oluştur
+   ```shell
+   touch database/database.sqlite
+    ```
+6. Composer paketlerini yükle
+   ```shell
+   composer install
+    ```
+7. Laravel için bir `application key` oluştur
+   ```shell
+   php artisan key:generate
+    ```
+8. Veritabanı `migration`'larını çalıştır
+   ```shell
+   php artisan migrate
+    ```
+9. Laravel Passport'u ayarla
+   ```shell
+   php artisan passport:install
+    ```
+10. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et
+11. En fazla 15dk'da bir `commit`'le
 12. Tüm testler geçiyor mu diye kontrol et ✅  
-    `php artisan test`
-
----
+    ```shell
+    php artisan test
+    ```
 
 ## Gizlilik
 
