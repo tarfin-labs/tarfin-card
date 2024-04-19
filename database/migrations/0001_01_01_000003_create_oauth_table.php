@@ -12,6 +12,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        Schema::create(table: 'oauth_personal_access_clients', callback: function (Blueprint $table): void {
+            $table->bigIncrements(column: 'id');
+            $table->uuid(column: 'client_id');
+            $table->timestamps();
+        });
+
         Schema::create(table: 'oauth_auth_codes', callback: function (Blueprint $table): void {
             $table->string(column: 'id', length: 100)->primary();
             $table->unsignedBigInteger(column: 'user_id')->index();
@@ -51,12 +57,6 @@ return new class extends Migration {
             $table->boolean(column: 'revoked');
             $table->dateTime(column: 'expires_at')->nullable();
         });
-
-        Schema::create(table: 'oauth_personal_access_clients', callback: function (Blueprint $table): void {
-            $table->bigIncrements(column: 'id');
-            $table->uuid(column: 'client_id');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -64,10 +64,10 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::dropIfExists(table: 'oauth_personal_access_clients');
         Schema::dropIfExists(table: 'oauth_auth_codes');
         Schema::dropIfExists(table: 'oauth_access_tokens');
         Schema::dropIfExists(table: 'oauth_clients');
         Schema::dropIfExists(table: 'oauth_refresh_tokens');
-        Schema::dropIfExists(table: 'oauth_personal_access_clients');
     }
 };
