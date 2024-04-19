@@ -112,36 +112,24 @@ Bu bir **Laravel 11** projesidir ve **PHP 8.2 veya 8.3** gerektirir.
    Bu özelliği kullanarak `https://github.com/tarfin-labs/tarfin-card` adresindeki `repo`yu `import` et
 3. `Private repo`'nu inceleyebilmemiz için, şu GitHub kullanıcılarını `Settings->Collaborators->Manage access->Add People` ile davet et      
    `frkcn`, `deligoez`, `tkaratug`, `aydinfatih`, `yidemir`
-4. `.env.example` dosyasından yeni bir `.env` dosyası oluştur
-   ```shell
-   cp .env.example .env
-    ```
-5. Bir sqlite veritabanı dosyası oluştur
-   ```shell
-   touch database/database.sqlite
-    ```
-6. Composer paketlerini yükle
+4. Composer paketlerini yükle
    ```shell
    composer install
     ```
-7. Laravel için bir `application key` oluştur
+5. Testleri çalıştırmak için gerekli olan bir `application key` oluştur
    ```shell
-   php artisan key:generate
+   php artisan key:generate --env=testing
     ```
-8. Veritabanı `migration`'larını çalıştır
+6. Laravel Passport'u ayarla
    ```shell
-   php artisan migrate
+   php artisan passport:keys
     ```
-9. Laravel Passport'u ayarla
+7. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et
+8. En fazla 15dk'da bir `commit`'le
+9. Tüm testler geçiyor mu diye kontrol et ✅  
    ```shell
-   php artisan passport:install
-    ```
-10. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et
-11. En fazla 15dk'da bir `commit`'le
-12. Tüm testler geçiyor mu diye kontrol et ✅  
-    ```shell
-    php artisan test
-    ```
+   php artisan test
+   ```
 
 ## Gizlilik
 
