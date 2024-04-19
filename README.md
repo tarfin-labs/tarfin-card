@@ -120,7 +120,7 @@ Bu bir **Laravel 11** projesidir ve **PHP 8.2 veya 8.3** gerektirir.
    ```shell
    php artisan key:generate --env=testing
     ```
-6. Laravel Passport'u ayarla
+6. Laravel Passport'u şifreleme anahtarlarını oluştur
    ```shell
    php artisan passport:keys
     ```
