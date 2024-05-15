@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create(table: 'users', callback: function (Blueprint $table): void {
+        Schema::create(table: 'users', callback: static function (Blueprint $table): void {
             $table->id();
             $table->string(column: 'name');
             $table->string(column: 'email')->unique();
@@ -22,13 +22,13 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create(table: 'password_reset_tokens', callback: function (Blueprint $table): void {
+        Schema::create(table: 'password_reset_tokens', callback: static function (Blueprint $table): void {
             $table->string(column: 'email')->primary();
             $table->string(column: 'token');
             $table->timestamp(column: 'created_at')->nullable();
         });
 
-        Schema::create(table: 'sessions', callback: function (Blueprint $table): void {
+        Schema::create(table: 'sessions', callback: static function (Blueprint $table): void {
             $table->string(column: 'id')->primary();
             $table->foreignId(column: 'user_id')->nullable()->index();
             $table->string(column: 'ip_address', length: 45)->nullable();

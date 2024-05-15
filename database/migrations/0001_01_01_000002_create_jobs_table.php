@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create(table: 'jobs', callback: function (Blueprint $table): void {
+        Schema::create(table: 'jobs', callback: static function (Blueprint $table): void {
             $table->id();
             $table->string(column: 'queue')->index();
             $table->longText(column: 'payload');
@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->unsignedInteger(column: 'created_at');
         });
 
-        Schema::create(table: 'job_batches', callback: function (Blueprint $table): void {
+        Schema::create(table: 'job_batches', callback: static function (Blueprint $table): void {
             $table->string(column: 'id')->primary();
             $table->string(column: 'name');
             $table->integer(column: 'total_jobs');
@@ -35,7 +35,7 @@ return new class extends Migration {
             $table->integer(column: 'finished_at')->nullable();
         });
 
-        Schema::create(table: 'failed_jobs', callback: function (Blueprint $table): void {
+        Schema::create(table: 'failed_jobs', callback: static function (Blueprint $table): void {
             $table->id();
             $table->string(column: 'uuid')->unique();
             $table->text(column: 'connection');

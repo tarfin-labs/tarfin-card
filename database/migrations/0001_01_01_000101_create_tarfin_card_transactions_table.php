@@ -13,7 +13,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create(table: 'tarfin_card_transactions', callback: function (Blueprint $table): void {
+        Schema::create(table: 'tarfin_card_transactions', callback: static function (Blueprint $table): void {
             $table->id();
 
             $table->foreignIdFor(model: TarfinCard::class)->constrained();
