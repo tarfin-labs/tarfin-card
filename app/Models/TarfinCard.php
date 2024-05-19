@@ -59,7 +59,9 @@ class TarfinCard extends Model
     public function isActive(): Attribute
     {
         return Attribute::make(
-            get: static fn (?Carbon $value): bool => is_null($value),
+            get: static function (?Carbon $value, array $attributes): bool {
+                return is_null(value: $attributes['disabled_at'] ?? null);
+            },
         );
     }
 
