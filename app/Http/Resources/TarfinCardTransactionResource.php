@@ -16,8 +16,10 @@ class TarfinCardTransactionResource extends JsonResource
     {
         /* @var \App\Models\TarfinCardTransaction $this */
         return [
-            'amount'        => $this->amount,
-            'currency_code' => $this->currency_code,
+            'id'             => $this->id,
+            'tarfin_card_id' => $this->tarfin_card_id,
+            'amount'         => $this->amount,
+            'currency_code'  => $this->currency_code,
         ];
     }
 }
