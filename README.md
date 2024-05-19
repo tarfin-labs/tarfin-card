@@ -66,8 +66,9 @@ yazman gerekiyor.
 #### İpuçları
 
 - Olumlu ve olumsuz senaryoları doğrula
-- `API`'den dönen cevapları ve veritabanına kaydedilen değerleri doğrula
+- `API`'den dönen cevapları ve veritabanına kaydedilen değerleri doğrula 
 - Müşteri sadece kendi `TarfinCard`'ı ile işlem yapabilir.
+- Yazman gereken test methodlarının [AAA (Arrange/Act/Assert)](https://medium.com/@prachishah03737/a-guide-to-phpunit-in-laravel-streamline-your-testing-workflow-efd56ae7726b) prensibine uygun olarak sıralandığına dikkat et
 
 **ÖNEMLİ:** Bu problemi çözmek için **SADECE** `Feature Test` dosyalarında değişiklik yapabilirsin.
 
