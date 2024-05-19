@@ -24,8 +24,18 @@ Bu aynı zamanda daha anlamlı ve olumlu bir teknik görüşme yapmamızı sağl
 hoşlanmıyoruz, bu nedenle tartışacak bazı somut kodlara sahip olmayı tercih ederiz. Böylece yapacağımız teknik mülakatın
 çok daha eğlenceli ve verimli hale geleceğine inanıyoruz.
 
+Problem üzerinde çalışırken, sahip olduğun tüm yetenekleri kullanmanı ve çözüm için çok özenli bir yaklaşım benimsemeni
+rica ediyoruz.
+Lütfen problemin gerektirdiği kadar zamanı mutlaka ayır ve tamamlamak için acele etme.
+Bununla birlikte, gerektiğinde ek zaman talep etmekten de çekinme. Çözümde başarılı olman ve en iyi performansı
+sergilemen bizim için önemlidir.
+
 Soruların mı var? Bize yazarak bu problemi geliştirmemize yardımcı olabilirsin. Sana yardımcı olmaktan mutluluk
 duyarız 🙂.
+
+`TarfinKart Problemi`ni çözmek için ayırdığın zaman ve çaban için şimdiden teşekkürler.
+
+Başarılar 🚀
 
 ### Problem #01
 
