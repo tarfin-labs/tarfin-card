@@ -26,33 +26,7 @@ class TarfinCardControllerTest extends TestCase
     }
 
     #[Test]
-    public function a_customer_can_not_create_an_invalid_tarfin_card(): void
-    {
-        // 1. Arrange
-        // TODO: Implement the `Arrange` part
-
-        // 2. Act
-        // TODO: Implement the `Act` part
-
-        // 3. Assert
-        // TODO: Implement the `Assert` part
-    }
-
-    #[Test]
     public function a_customer_can_see_a_tarfin_card(): void
-    {
-        // 1. Arrange
-        // TODO: Implement the `Arrange` part
-
-        // 2. Act
-        // TODO: Implement the `Act` part
-
-        // 3. Assert
-        // TODO: Implement the `Assert` part
-    }
-
-    #[Test]
-    public function a_customer_can_not_see_a_tarfin_card_of_other_customer(): void
     {
         // 1. Arrange
         // TODO: Implement the `Arrange` part
@@ -78,20 +52,7 @@ class TarfinCardControllerTest extends TestCase
     }
 
     #[Test]
-    public function a_customer_can_activate_the_tarfin_card(): void
-    {
-        // 1. Arrange
-        // TODO: Implement the `Arrange` part
-
-        // 2. Act
-        // TODO: Implement the `Act` part
-
-        // 3. Assert
-        // TODO: Implement the `Assert` part
-    }
-
-    #[Test]
-    public function a_customer_can_deactivate_the_tarfin_card(): void
+    public function a_customer_can_update_the_tarfin_card(): void
     {
         // 1. Arrange
         // TODO: Implement the `Arrange` part
