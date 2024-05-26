@@ -118,25 +118,24 @@ geçmesi için gerekli kodu yazmalısın.
 
 Bu bir **Laravel 11** projesidir ve **PHP 8.2 veya 8.3** gerektirir.
 
-1. Kişisel GitHub hesabında `tarfin-card` isimli `private` bir `repo` oluştur
-2. GitHub [`Import Repo` sayfasını](https://github.com/new/import) kullanarak `https://github.com/tarfin-labs/tarfin-card` adresindeki `repo`yu yeni oluşturduğun boş repo'ya `import` et
-3. `Private repo`'nu inceleyebilmemiz için, şu GitHub kullanıcılarını `Settings->Collaborators->Manage access->Add People` ile davet et      
+1. GitHub [`Import Repo` sayfasını](https://github.com/new/import) kullanarak `https://github.com/tarfin-labs/tarfin-card` adresindeki `repo`'yu senin GitHub hesabında, aynı isimli, yeni bir repo'ya `import` et
+2. `Private repo`'nu inceleyebilmemiz için, şu GitHub kullanıcılarını `Settings->Collaborators->Manage access->Add People` ile davet et      
    `frkcn`, `deligoez`, `tkaratug`, `aydinfatih`, `yidemir`
-4. Composer paketlerini yükle
+3. Composer paketlerini yükle
    ```shell
    composer install
     ```
-5. Testleri çalıştırmak için gerekli olan bir `application key` oluştur
+4. Testleri çalıştırmak için gerekli olan bir `application key` oluştur
    ```shell
    php artisan key:generate --env=testing
     ```
-6. Laravel Passport'u şifreleme anahtarlarını oluştur
+5. Laravel Passport'u şifreleme anahtarlarını oluştur
    ```shell
    php artisan passport:keys
     ```
-7. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et
-8. En fazla 15dk'da bir `commit`'le
-9. Tüm testler geçiyor mu diye kontrol et ✅  
+6. Yaptığın değişikliklerin [atomik](https://en.wikipedia.org/wiki/Atomic_commit) olmasına dikkat et
+7. En fazla 15dk'da bir `commit`'le
+8. Tüm testler geçiyor mu diye kontrol et ✅  
    ```shell
    php artisan test
    ```
