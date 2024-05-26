@@ -119,8 +119,7 @@ geçmesi için gerekli kodu yazmalısın.
 Bu bir **Laravel 11** projesidir ve **PHP 8.2 veya 8.3** gerektirir.
 
 1. Kişisel GitHub hesabında `tarfin-card` isimli `private` bir `repo` oluştur
-2. GitHub hesabındaki `tarfin-card` `repo`sunu açtığında en alttaki `Import code` düğmesini göreceksin   
-   Bu özelliği kullanarak `https://github.com/tarfin-labs/tarfin-card` adresindeki `repo`yu `import` et
+2. GitHub [`Import Repo` sayfasını](https://github.com/new/import) kullanarak `https://github.com/tarfin-labs/tarfin-card` adresindeki `repo`yu yeni oluşturduğun boş repo'ya `import` et
 3. `Private repo`'nu inceleyebilmemiz için, şu GitHub kullanıcılarını `Settings->Collaborators->Manage access->Add People` ile davet et      
    `frkcn`, `deligoez`, `tkaratug`, `aydinfatih`, `yidemir`
 4. Composer paketlerini yükle
